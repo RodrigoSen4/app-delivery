@@ -17,9 +17,9 @@ function LoginPage(props) {
       return setMessage('Senha inválida');
     }
 
-    const { data } = await doLogin(info);
+    const { payload, status } = await doLogin(info);
 
-    if (data) return setMessage(data.message);
+    if (!status) return setMessage(payload);
 
     history.push('/products');
   };
