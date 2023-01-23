@@ -8,7 +8,7 @@ const conn = `http://${host}:${port}`;
 const service = axios.create({ baseURL: conn });
 
 const doLogin = async (userInfo) => {
-  const { data } = await service.post('/login', userInfo);
+  const { data } = await service.post('/', userInfo);
 
   if (!data) return { message: data.message };
 
