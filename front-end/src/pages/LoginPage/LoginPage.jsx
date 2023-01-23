@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { checkEmail, showMessage } from '../../helpers/helpers';
+import { checkEmail, checkUserInfo, showMessage } from '../../helpers/helpers';
 import { doLogin } from '../../API/requests';
 
 const SIX = 6;
@@ -52,6 +52,7 @@ function LoginPage(props) {
         <button
           data-testid="common_login__button-login"
           type="button"
+          disabled={ !checkUserInfo(userInfo) }
           onClick={ () => login(userInfo) }
         >
           Entrar

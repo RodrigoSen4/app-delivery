@@ -11,4 +11,12 @@ const checkEmail = (email) => {
   return regExp.test(email);
 };
 
-export { showMessage, checkEmail };
+const checkUserInfo = (userInfo) => {
+  const SIX = 6;
+  const validEmail = checkEmail(userInfo.email);
+  const validPassword = (userInfo.password && userInfo.password.length >= SIX);
+
+  return (validEmail && validPassword);
+};
+
+export { showMessage, checkEmail, checkUserInfo };
