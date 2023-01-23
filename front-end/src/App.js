@@ -1,10 +1,15 @@
 import React from 'react';
-import ProductsPage from './pages/ProductsPage';
+import { Route, Switch } from 'react-router-dom';
+import ProductsPage from './pages/ProductsPage/ProductsPage';
+import LoginPage from './pages/LoginPage/LoginPage';
 import './App.css';
 
 function App() {
   return (
-    <ProductsPage />
+    <Switch>
+      <Route exact path={ ['/', '/login'] } component={ LoginPage } />
+      <Route path="/products" component={ ProductsPage } />
+    </Switch>
   );
 }
 

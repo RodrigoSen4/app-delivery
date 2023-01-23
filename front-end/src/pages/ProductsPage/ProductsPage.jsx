@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import NavBar from '../components/NavBar/NavBar';
-import { getAllProducts } from '../API/requests';
-import ProductCard from '../components/ProductCard/ProductCard';
+import NavBar from '../../components/NavBar/NavBar';
+import { getAllProducts } from '../../API/requests';
+import ProductCard from '../../components/ProductCard/ProductCard';
 
 function ProductsPage() {
   const [products, setProducts] = useState([]);
