@@ -2,7 +2,6 @@ const { Product } = require('../../database/models');
 
 async function getProducts() {
   const data = await Product.findAll({ limit: 11 });
-
   return { status: 200, info: data };
 }
 

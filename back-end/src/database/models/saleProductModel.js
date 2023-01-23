@@ -1,4 +1,4 @@
-const saleProductModel = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const SaleProduct = sequelize.define('SaleProduct',
   {
     quantity: DataTypes.INTEGER,
@@ -24,8 +24,6 @@ const saleProductModel = (sequelize, DataTypes) => {
       otherKey: 'productId',
     });
   };
-  
+
   return SaleProduct;
 }
-
-module.exports = saleProductModel;
