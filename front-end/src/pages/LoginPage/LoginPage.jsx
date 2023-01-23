@@ -30,6 +30,7 @@ function LoginPage(props) {
         <label htmlFor="user-email">
           Email:
           <input
+            data-testid="common_login__input-email"
             type="text"
             id="user-email"
             onChange={ ({ target }) => {
@@ -40,6 +41,7 @@ function LoginPage(props) {
         <label htmlFor="user-password">
           Senha:
           <input
+            data-testid="common_login__input-password"
             type="password"
             id="user-password"
             onChange={ ({ target }) => {
@@ -47,8 +49,19 @@ function LoginPage(props) {
             } }
           />
         </label>
-        <button type="button" onClick={ () => login(userInfo) }>
+        <button
+          data-testid="common_login__button-login"
+          type="button"
+          onClick={ () => login(userInfo) }
+        >
           Entrar
+        </button>
+        <button
+          data-testid="common_login__button-register"
+          type="button"
+          onClick={ () => history.push('/register') }
+        >
+          Ainda não tenho conta
         </button>
         { message ? showMessage(message) : null }
       </form>
