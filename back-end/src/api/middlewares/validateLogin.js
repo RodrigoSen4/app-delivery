@@ -20,6 +20,7 @@ const validatePassword = async (password) => {
 
 const validateUser = async (email, password) => {
   const user = await getByEmail(email);
+  console.log(user);
 
   if (!user || user.password !== password) {
     return { status: 404 , message: 'User not found'};
@@ -31,7 +32,6 @@ const validateLogin = async (req, res, next) => {
   let error = null;
 
   error = await validatePassword(password);
-  console.log(error);
 
   if (!error) {
     error = await validateEmail(email);
