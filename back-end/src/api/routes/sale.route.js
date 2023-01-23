@@ -6,4 +6,3 @@ const saleRouter = Router();
 saleRouter.post('/sales', SaleController.createSale);
 
 module.exports = saleRouter;
-
