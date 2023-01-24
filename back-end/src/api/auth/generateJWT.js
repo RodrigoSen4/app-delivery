@@ -12,6 +12,6 @@ const generateJWT = (user) => {
   
   const token = jwt.sign(payload, JWT_SECRET, jwtConfig);
   return token;
-}
+};
 
 module.exports = generateJWT;
