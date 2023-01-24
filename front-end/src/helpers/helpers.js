@@ -1,6 +1,6 @@
-const showMessage = (message) => (
+const showMessage = (message, testid) => (
   <p
-    data-testid="common_login__element-invalid-email"
+    data-testid={ testid }
     style={ { color: 'red' } }
   >
     { message }

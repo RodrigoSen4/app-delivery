@@ -62,7 +62,9 @@ function LoginPage(props) {
         >
           Ainda não tenho conta
         </button>
-        { message ? showMessage(message) : null }
+        { message
+          ? showMessage(message, 'common_login__element-invalid-email')
+          : null }
       </form>
     </div>
   );
