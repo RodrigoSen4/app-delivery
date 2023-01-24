@@ -13,9 +13,7 @@ function LoginPage(props) {
   const login = async (info) => {
     if (!checkEmail(info.email)) return setMessage('Email inválido');
 
-    if (!info.password || info.password.length < SIX) {
-      return setMessage('Senha inválida');
-    }
+    if (!info.password || info.password.length < SIX) return setMessage('Senha inválida');
 
     const { payload, status } = await doLogin(info);
 
