@@ -16,18 +16,17 @@ const validateEmail = async (email) => {
   if (userEmail) {
     return { status: 409, message: 'User already registered' };
   }
-
-}
+};
 
 const validatePassword = (password) => {
   if (!password || password.length < 6) {
-    return { status: 400, message: 'Password length must be at least 6 characters long' }
+    return { status: 400, message: 'Password length must be at least 6 characters long' };
   }
-}
+};
 
 const validateName = async (name) => {
   if (!name || name.length < 12) {
-    return { status: 400, message: 'Name length must be at least 12 characters long' }
+    return { status: 400, message: 'Name length must be at least 12 characters long' };
   }
 
   const userName = await getByName(name);
@@ -35,7 +34,7 @@ const validateName = async (name) => {
   if (userName) {
     return { status: 409, message: 'User already registered' };
   }
-}
+};
 
 const validateUser = async (req, res, next) => {
   const { name, email, password } = req.body;

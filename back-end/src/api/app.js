@@ -16,7 +16,6 @@ app.use(loginRoute);
 app.use(userRoute);
 app.get('/coffee', (_req, res) => res.status(418).end());
 
-
 module.exports = app;
 
 // Branch Release
