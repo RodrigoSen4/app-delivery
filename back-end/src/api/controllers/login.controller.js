@@ -1,4 +1,4 @@
-const { getByEmail } = require('../services/login.service');
+const { getByEmail } = require('../services/user.service');
 const generateJWT = require('../auth/generateJWT');
 
 const login = async (req, res) => {
