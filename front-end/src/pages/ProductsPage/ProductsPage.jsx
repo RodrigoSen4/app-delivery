@@ -1,11 +1,18 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import NavBar from '../../components/NavBar/NavBar';
 import { getAllProducts } from '../../API/requests';
 import ProductCard from '../../components/ProductCard/ProductCard';
+import ShopContext from '../../context/ShopContext';
 
 function ProductsPage({ history }) {
   const [products, setProducts] = useState([]);
+  const { products: orderedProducts } = useContext(ShopContext);
+  let totalPrice = 0;
+  orderedProducts.forEach((product) => {
+    const price = product.price * product.quantity;
+    totalPrice += price;
+  });
 
   const renderAllProducts = async () => {
     const data = await getAllProducts();
@@ -30,6 +37,11 @@ function ProductsPage({ history }) {
           ))
         }
       </section>
+      <button type="button" data-testid="customer_products__button-cart">
+        Ver Carrinho:
+        {' '}
+        <span data-testid="customer_products__checkout-bottom-value">{ totalPrice }</span>
+      </button>
     </>
   );
 }
