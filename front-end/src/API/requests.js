@@ -39,6 +39,7 @@ const registerUser = async (userInfo) => {
 
 const getAllProducts = async () => {
   const { data } = await service.get('/products');
+  console.log(data);
   return data;
 };
 

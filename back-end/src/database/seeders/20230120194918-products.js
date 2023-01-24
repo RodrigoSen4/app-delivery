@@ -13,7 +13,13 @@ module.exports = {
         id: 2,
         name: 'Heineken 600ml',
         price: 7.50,
-        url_image: 'https://cf.shopee.com.br/file/f298cce542de153cc4bec537c18c22ca',
+        url_image: 'http://localhost:3001/images/heineken_600ml.jpg',
+      },
+      {
+        id: 3,
+        name: 'Antarctica Pilsen 300ml',
+        price: 2.49,
+        url_image: 'http://localhost:3001/images/antarctica_pilsen_300ml.jpg',
       },
       {
         id: 4,
