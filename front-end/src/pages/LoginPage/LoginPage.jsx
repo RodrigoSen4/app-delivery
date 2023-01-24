@@ -19,7 +19,7 @@ function LoginPage(props) {
 
     if (!status) return setMessage(payload);
 
-    history.push('/products');
+    history.push('/customer/products');
   };
 
   return (
