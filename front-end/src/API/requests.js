@@ -24,9 +24,22 @@ const doLogin = async (userInfo) => {
   }
 };
 
+const registerUser = async (userInfo) => {
+  try {
+    const { data } = await service.post('/register', userInfo);
+    localStorage.setItem('userInfo', JSON.stringify(data));
+    return true;
+  } catch (err) {
+    return {
+      payload: err.response.data,
+      status: false,
+    };
+  }
+};
+
 const getAllProducts = async () => {
   const { data } = await service.get('/products');
   return data;
 };
 
-export { doLogin, getAllProducts };
+export { doLogin, registerUser, getAllProducts };

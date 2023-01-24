@@ -13,9 +13,7 @@ function LoginPage(props) {
   const login = async (info) => {
     if (!checkEmail(info.email)) return setMessage('Email inválido');
 
-    if (!info.password || info.password.length < SIX) {
-      return setMessage('Senha inválida');
-    }
+    if (!info.password || info.password.length < SIX) return setMessage('Senha inválida');
 
     const { payload, status } = await doLogin(info);
 
@@ -64,7 +62,9 @@ function LoginPage(props) {
         >
           Ainda não tenho conta
         </button>
-        { message ? showMessage(message) : null }
+        { message
+          ? showMessage(message, 'common_login__element-invalid-email')
+          : null }
       </form>
     </div>
   );
