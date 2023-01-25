@@ -12,7 +12,7 @@ const service = axios.create({ baseURL: conn });
 const doLogin = async (userInfo) => {
   try {
     const { data } = await service.post('/login', { ...userInfo });
-    localStorage.setItem('userInfo', JSON.stringify(data));
+    localStorage.setItem('user', JSON.stringify(data));
 
     return {
       payload: null,
@@ -29,7 +29,7 @@ const doLogin = async (userInfo) => {
 const registerUser = async (userInfo) => {
   try {
     const { data } = await service.post('/register', userInfo);
-    localStorage.setItem('userInfo', JSON.stringify(data));
+    localStorage.setItem('user', JSON.stringify(data));
     return {
       payload: null,
       status: true,
@@ -43,7 +43,13 @@ const registerUser = async (userInfo) => {
 };
 
 const getAllProducts = async () => {
-  const { data } = await service.get('/products');
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user);
+  const { data } = await service.get('/products', {
+    headers: {
+      Authorization: user.token,
+    },
+  });
   return data;
 };
 

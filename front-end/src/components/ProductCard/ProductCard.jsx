@@ -12,7 +12,9 @@ function ProductCard({ props }) {
 
   return (
     <div>
-      <p data-testid={ `customer_products__element-card-price-${id}` }>{ price }</p>
+      <p data-testid={ `customer_products__element-card-price-${id}` }>
+        { price.replace('.', ',') }
+      </p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ urlImage }
@@ -40,7 +42,16 @@ function ProductCard({ props }) {
         <input
           data-testid={ `customer_products__input-card-quantity-${id}` }
           type="number"
-          value={ item.quantity }
+          onChange={ ({ target: { value } }) => {
+            const index = products.findIndex((product) => product.name === name);
+            if (index !== MENOSUM && Number(value) >= 0) {
+              const newProducts = [...products];
+              newProducts[index].quantity = Number(value);
+              return setProducts(newProducts);
+            }
+            setProducts((prev) => ([...prev, { id, ...props, quantity: Number(value) }]));
+          } }
+          value={ item.quantity || 0 }
         />
         <button
           data-testid={ `customer_products__button-card-rm-item-${id}` }

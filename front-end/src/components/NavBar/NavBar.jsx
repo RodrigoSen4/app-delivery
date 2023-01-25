@@ -1,31 +1,34 @@
+import { Link } from 'react-router-dom';
+
 function NavBar() {
-  const { name } = JSON.parse(localStorage.getItem('userInfo'));
+  const { name } = JSON.parse(localStorage.getItem('user'));
 
   return (
     <nav style={ { display: 'flex', justifyContent: 'space-between' } }>
-      <a
-        href="/produtos"
+      <Link
+        to="/customer/products"
         data-testid="customer_products__element-navbar-link-products"
       >
         Produtos
-      </a>
-      <a
-        href="/meus_pedidos"
+      </Link>
+      <Link
+        to="/meus_pedidos"
         data-testid="customer_products__element-navbar-link-orders"
       >
         Meus Pedidos
-      </a>
+      </Link>
       <p
         data-testid="customer_products__element-navbar-user-full-name"
       >
         { name || 'Zé' }
       </p>
-      <a
-        href="/sair"
+      <Link
+        to="/login"
+        onClick={ () => localStorage.removeItem('user') }
         data-testid="customer_products__element-navbar-link-logout"
       >
         Sair
-      </a>
+      </Link>
     </nav>
   );
 }
