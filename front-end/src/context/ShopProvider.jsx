@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import ShopContext from './ShopContext';
 
 function ShopProvider({ children }) {
   const [products, setProducts] = useState([]);
 
-  // eslint-disable-next-line react/jsx-no-constructed-context-values
-  const valueProvider = {
-    products,
-    setProducts,
-  };
+  const valueProvider = useMemo(
+    () => ({ products, setProducts }),
+    [products, setProducts],
+  );
 
   return (
     <ShopContext.Provider value={ valueProvider }>

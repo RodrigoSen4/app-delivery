@@ -9,7 +9,7 @@ const createUser = async (req, res) => {
 
   const user = await create({ name, email, password: cryptedPassword });
 
-  const token = generateJWT(user)
+  const token = generateJWT(user);
 
   return res.status(201).json({ ...user, token });
 };
