@@ -1,7 +1,9 @@
-require('dotenv/config');
+const { readFileSync } = require('fs');
+const { join } = require('path');
 const jwt = require('jsonwebtoken');
 
-const { JWT_SECRET } = process.env;
+const path = '../../../jwt.evaluation.key';
+const secret = readFileSync(join(__dirname, path), 'utf-8');
 
 const generateJWT = (user) => {
   const jwtConfig = {
@@ -11,7 +13,7 @@ const generateJWT = (user) => {
 
   const payload = { email: user.email };
 
-  const token = jwt.sign(payload, JWT_SECRET, jwtConfig);
+  const token = jwt.sign(payload, secret, jwtConfig);
   return token;
 };
 

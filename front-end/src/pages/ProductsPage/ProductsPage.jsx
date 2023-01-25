@@ -27,6 +27,8 @@ function ProductsPage({ history }) {
     renderAllProducts();
   }, []);
 
+  console.log(totalPrice);
+
   return (
     <>
       <NavBar />
@@ -37,7 +39,12 @@ function ProductsPage({ history }) {
           ))
         }
       </section>
-      <button type="button" data-testid="customer_products__button-cart">
+      <button
+        type="button"
+        data-testid="customer_products__button-cart"
+        onClick={ () => history.push('/customer/checkout') }
+        disabled={ totalPrice === 0 }
+      >
         Ver Carrinho:
         {' '}
         <span
