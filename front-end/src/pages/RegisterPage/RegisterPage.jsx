@@ -11,10 +11,10 @@ function RegisterPage(props) {
   const [userInfo, setUserInfo] = useState({ email: null, password: null });
 
   const register = async () => {
-    const data = await registerUser(userInfo);
+    const { payload, status } = await registerUser(userInfo);
 
-    if (typeof data === 'boolean') return history.push('/customer/products');
-    return setMessage(data.payload);
+    if (status) return history.push('/customer/products');
+    return setMessage(payload);
   };
 
   return (

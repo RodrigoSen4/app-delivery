@@ -1,4 +1,5 @@
 const md5 = require('md5');
+const generateJWT = require('../auth/generateJWT');
 const { create } = require('../services/user.service');
 
 const createUser = async (req, res) => {
@@ -8,7 +9,9 @@ const createUser = async (req, res) => {
 
   const user = await create({ name, email, password: cryptedPassword });
 
-  return res.status(201).json(user);
+  const token = generateJWT(user)
+
+  return res.status(201).json({ ...user, token });
 };
 
 module.exports = {

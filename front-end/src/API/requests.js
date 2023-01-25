@@ -12,8 +12,10 @@ const service = axios.create({ baseURL: conn });
 const doLogin = async (userInfo) => {
   try {
     const { data } = await service.post('/login', { ...userInfo });
+    localStorage.setItem('userInfo', JSON.stringify(data));
+
     return {
-      payload: data,
+      payload: null,
       status: true,
     };
   } catch (err) {
@@ -28,7 +30,10 @@ const registerUser = async (userInfo) => {
   try {
     const { data } = await service.post('/register', userInfo);
     localStorage.setItem('userInfo', JSON.stringify(data));
-    return true;
+    return {
+      payload: null,
+      status: true,
+    };
   } catch (err) {
     return {
       payload: err.response.data,
@@ -39,7 +44,6 @@ const registerUser = async (userInfo) => {
 
 const getAllProducts = async () => {
   const { data } = await service.get('/products');
-  console.log(data);
   return data;
 };
 

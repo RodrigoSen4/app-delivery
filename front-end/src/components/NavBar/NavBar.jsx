@@ -1,4 +1,6 @@
 function NavBar() {
+  const { name } = JSON.parse(localStorage.getItem('userInfo'));
+
   return (
     <nav style={ { display: 'flex', justifyContent: 'space-between' } }>
       <a
@@ -16,7 +18,7 @@ function NavBar() {
       <p
         data-testid="customer_products__element-navbar-user-full-name"
       >
-        { localStorage.name || 'Zé' }
+        { name || 'Zé' }
       </p>
       <a
         href="/sair"
