@@ -1,3 +1,4 @@
+const md5 = require('md5');
 const { getByEmail } = require('../services/user.service');
 
 // Função para validar email. Fonte: https://www.horadecodar.com.br/2020/09/13/como-validar-email-com-javascript/
@@ -21,7 +22,9 @@ const validatePassword = (password) => {
 const validateUser = async (email, password) => {
   const user = await getByEmail(email);
 
-  if (!user || user.password !== password) {
+  const cryptedPassword = md5(password);
+
+  if (!user || user.password !== cryptedPassword) {
     return { status: 404, message: 'User not found' };
   }
 };

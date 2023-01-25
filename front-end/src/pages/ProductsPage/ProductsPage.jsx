@@ -20,9 +20,9 @@ function ProductsPage({ history }) {
   };
 
   useState(() => {
-    const { token } = JSON.parse(localStorage.getItem('userInfo'));
+    const userInfo = localStorage.getItem('userInfo');
 
-    if (!token) return history.push('/login');
+    if (!userInfo || !JSON.parse(userInfo).token) return history.push('/login');
 
     renderAllProducts();
   }, []);
