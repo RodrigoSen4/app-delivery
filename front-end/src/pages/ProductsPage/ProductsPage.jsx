@@ -20,7 +20,7 @@ function ProductsPage({ history }) {
   };
 
   useState(() => {
-    const userInfo = localStorage.getItem('userInfo');
+    const userInfo = localStorage.getItem('user');
 
     if (!userInfo || !JSON.parse(userInfo).token) return history.push('/login');
 
@@ -40,7 +40,11 @@ function ProductsPage({ history }) {
       <button type="button" data-testid="customer_products__button-cart">
         Ver Carrinho:
         {' '}
-        <span data-testid="customer_products__checkout-bottom-value">{ totalPrice }</span>
+        <span
+          data-testid="customer_products__checkout-bottom-value"
+        >
+          { totalPrice.toFixed(2).toString().replace('.', ',') }
+        </span>
       </button>
     </>
   );
