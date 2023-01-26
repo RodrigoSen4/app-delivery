@@ -27,8 +27,6 @@ function ProductsPage({ history }) {
     renderAllProducts();
   }, []);
 
-  console.log(totalPrice);
-
   return (
     <>
       <NavBar />

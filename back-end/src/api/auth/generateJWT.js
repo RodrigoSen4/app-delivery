@@ -11,7 +11,7 @@ const generateJWT = (user) => {
     algorithm: 'HS256',
   };
 
-  const payload = { email: user.email };
+  const payload = { userId: user.id, email: user.email };
 
   const token = jwt.sign(payload, secret, jwtConfig);
   return token;

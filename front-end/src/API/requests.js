@@ -44,7 +44,6 @@ const registerUser = async (userInfo) => {
 
 const getAllProducts = async () => {
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log(user);
   const { data } = await service.get('/products', {
     headers: {
       Authorization: user.token,
@@ -58,4 +57,14 @@ const getSellers = async () => {
   return sellers.data;
 };
 
-export { doLogin, registerUser, getAllProducts, getSellers };
+const postSale = async (sale) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const { data: { id } } = await service.post('/sales', sale, {
+    headers: { Authorization: user.token },
+  });
+
+  return id;
+};
+
+export { doLogin, registerUser, getAllProducts, getSellers, postSale };
