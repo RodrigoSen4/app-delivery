@@ -1,9 +1,13 @@
-/* import PropTypes from 'prop-types'; */
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { getSellers } from '../../API/requests';
 
-function SelectSeller() {
+function SelectSeller({ orderInfo: { order, setOrder } }) {
   const [sellers, setSellers] = useState([]);
+
+  const changeInput = ({ target: { value, name } }) => {
+    setOrder({ ...order, saleInfo: { ...order.saleInfo, [name]: Number(value) } });
+  };
 
   const saveSellers = async () => {
     const sellersFromDB = await getSellers();
@@ -20,11 +24,13 @@ function SelectSeller() {
       <select
         data-testid="customer_checkout__select-seller"
         id="seller-selector"
+        onClick={ changeInput }
+        name="sellerId"
       >
         {
           sellers.map((seller) => (
             <option
-              value={ seller.name }
+              value={ seller.id }
               key={ seller.name }
             >
               { seller.name }
@@ -34,5 +40,9 @@ function SelectSeller() {
     </label>
   );
 }
+
+SelectSeller.propTypes = {
+  orderInfo: PropTypes.objectOf().isRequired,
+};
 
 export default SelectSeller;

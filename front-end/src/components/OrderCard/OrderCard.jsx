@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import ShopContext from '../../context/ShopContext';
 
 function OrderCard({ props }) {
   const { index, name, quantity, price } = props;
+  const { products, setProducts } = useContext(ShopContext);
 
   return (
     <div style={ { display: 'flex', gap: '16px', padding: '8px', fontSize: '20px' } }>
@@ -23,16 +26,21 @@ function OrderCard({ props }) {
       <p
         data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
       >
-        { price }
+        { price.toString().replace('.', ',') }
       </p>
       <p
         data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
       >
-        { (price * quantity).toFixed(2) }
+        { (price * quantity).toFixed(2).toString().replace('.', ',') }
       </p>
       <button
         data-testid={ `customer_checkout__element-order-table-remove-${index}` }
         type="button"
+        onClick={ () => {
+          const updatedProducts = products
+            .filter((product) => product.name !== name);
+          setProducts(updatedProducts);
+        } }
       >
         Remover
       </button>
