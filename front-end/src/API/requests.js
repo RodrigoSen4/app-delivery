@@ -53,4 +53,9 @@ const getAllProducts = async () => {
   return data;
 };
 
-export { doLogin, registerUser, getAllProducts };
+const getSellers = async () => {
+  const sellers = await service.get('/sellers');
+  return sellers.data;
+};
+
+export { doLogin, registerUser, getAllProducts, getSellers };
