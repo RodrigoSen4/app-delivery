@@ -1,7 +1,18 @@
-import PropTypes from 'prop-types';
+/* import PropTypes from 'prop-types'; */
+import { useState, useEffect } from 'react';
+import { getSellers } from '../../API/requests';
 
-function SelectSeller(props) {
-  const { sellers } = props;
+function SelectSeller() {
+  const [sellers, setSellers] = useState([]);
+
+  const saveSellers = async () => {
+    const sellersFromDB = await getSellers();
+    setSellers(sellersFromDB);
+  };
+
+  useEffect(() => {
+    saveSellers();
+  }, []);
 
   return (
     <label htmlFor="seller-selector">
@@ -13,19 +24,15 @@ function SelectSeller(props) {
         {
           sellers.map((seller) => (
             <option
-              value={ seller }
-              key={ seller }
+              value={ seller.name }
+              key={ seller.name }
             >
-              { seller }
+              { seller.name }
             </option>))
         }
       </select>
     </label>
   );
 }
-
-SelectSeller.propTypes = {
-  sellers: PropTypes.arrayOf().isRequired,
-};
 
 export default SelectSeller;
