@@ -5,7 +5,7 @@ import RegisterPage from './pages/RegisterPage/RegisterPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import CartPage from './pages/CartPage/CartPage';
 import './App.css';
-import OrdersPage from './components/OrdersPage/OrdersPage';
+import OrdersPage from './pages/OrdersPage/OrdersPage';
 
 function App() {
   return (

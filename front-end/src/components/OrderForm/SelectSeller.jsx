@@ -42,7 +42,17 @@ function SelectSeller({ orderInfo: { order, setOrder } }) {
 }
 
 SelectSeller.propTypes = {
-  orderInfo: PropTypes.objectOf().isRequired,
+  orderInfo: PropTypes.shape({
+    order: PropTypes.shape({
+      saleInfo: PropTypes.shape({
+        sellerId: PropTypes.number,
+        totalPrice: PropTypes.number,
+        deliveryAddress: PropTypes.string,
+        deliveryNumber: PropTypes.string,
+      }),
+    }),
+    setOrder: PropTypes.func,
+  }).isRequired,
 };
 
 export default SelectSeller;

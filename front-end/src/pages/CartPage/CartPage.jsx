@@ -18,7 +18,7 @@ function CartPage({ history }) {
       <div>
         {
           products.map((product, index) => (
-            <OrderCard props={ { ...product, index } } key={ product.name } />
+            <OrderCard orderInfo={ { ...product, index } } key={ product.name } />
           ))
         }
       </div>
@@ -36,7 +36,9 @@ function CartPage({ history }) {
 }
 
 CartPage.propTypes = {
-  history: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default CartPage;

@@ -2,43 +2,50 @@ import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import ShopContext from '../../context/ShopContext';
 
-function OrderCard({ props }) {
-  const { index, name, quantity, price } = props;
+function OrderCard({ orderInfo }) {
   const { products, setProducts } = useContext(ShopContext);
 
   return (
     <div style={ { display: 'flex', gap: '16px', padding: '8px', fontSize: '20px' } }>
       <p
-        data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
+        data-testid={
+          `customer_checkout__element-order-table-item-number-${orderInfo.index}`
+        }
       >
-        { index + 1 }
+        { orderInfo.index + 1 }
       </p>
       <p
-        data-testid={ `customer_checkout__element-order-table-name-${index}` }
+        data-testid={ `customer_checkout__element-order-table-name-${orderInfo.index}` }
       >
-        { name }
+        { orderInfo.name }
       </p>
       <p
-        data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+        data-testid={
+          `customer_checkout__element-order-table-quantity-${orderInfo.index}`
+        }
       >
-        { quantity }
+        { orderInfo.quantity }
       </p>
       <p
-        data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
+        data-testid={
+          `customer_checkout__element-order-table-unit-price-${orderInfo.index}`
+        }
       >
-        { price.toString().replace('.', ',') }
+        { orderInfo.price.toString().replace('.', ',') }
       </p>
       <p
-        data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
+        data-testid={
+          `customer_checkout__element-order-table-sub-total-${orderInfo.index}`
+        }
       >
-        { (price * quantity).toFixed(2).toString().replace('.', ',') }
+        { (orderInfo.price * orderInfo.quantity).toFixed(2).toString().replace('.', ',') }
       </p>
       <button
-        data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+        data-testid={ `customer_checkout__element-order-table-remove-${orderInfo.index}` }
         type="button"
         onClick={ () => {
           const updatedProducts = products
-            .filter((product) => product.name !== name);
+            .filter((product) => product.name !== orderInfo.name);
           setProducts(updatedProducts);
         } }
       >
@@ -49,11 +56,12 @@ function OrderCard({ props }) {
 }
 
 OrderCard.propTypes = {
-  props: PropTypes.objectOf().isRequired,
-  index: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
+  orderInfo: PropTypes.shape({
+    index: PropTypes.number,
+    name: PropTypes.string,
+    quantity: PropTypes.number,
+    price: PropTypes.string,
+  }).isRequired,
 };
 
 export default OrderCard;
