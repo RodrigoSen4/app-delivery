@@ -71,7 +71,9 @@ function LoginPage(props) {
 }
 
 LoginPage.propTypes = {
-  history: PropTypes.objectOf().isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default LoginPage;
