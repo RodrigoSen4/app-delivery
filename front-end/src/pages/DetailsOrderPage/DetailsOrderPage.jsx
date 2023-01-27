@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react';
-import { getSales } from '../../API/requests';
+/* import PropTypes from 'prop-types'; */
+/* import { useState, useEffect } from 'react';
+import { getSales } from '../../API/requests'; */
 import NavBar from '../../components/NavBar/NavBar';
 
-function DetailsOrderPage({ match: { params: { id } } }) {
-  const [order, setOrder] = useState({});
+function DetailsOrderPage(/* { match: { params: { id } } } */) {
+  /* const [order, setOrder] = useState({});
 
   const getOrderFromDB = async () => {
     const orderFromDB = await getSales(id);
     setOrder(orderFromDB);
   };
 
-  useEffect(() => { getOrderFromDB(); }, []);
+  useEffect(() => { getOrderFromDB(); }, []); */
 
   return (
     <div>
@@ -41,5 +42,13 @@ function DetailsOrderPage({ match: { params: { id } } }) {
     </div>
   );
 }
+
+/* DetailsOrderPage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.func,
+    }),
+  }).isRequired,
+}; */
 
 export default DetailsOrderPage;
