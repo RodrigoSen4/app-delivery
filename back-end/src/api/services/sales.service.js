@@ -13,4 +13,13 @@ async function createSale(userId, products, saleInfo) {
   return newSale;
 }
 
-module.exports = { createSale };
+async function getOrderById(id) {
+  const orders = await Sale.findAll({ where: { userId: id } });
+  console.log(orders);
+  return orders;
+}
+
+async function updateStatus(id, status) {
+  await Sale.update({ status }, { where: { id } });
+}
+module.exports = { createSale, getOrderById, updateStatus };
