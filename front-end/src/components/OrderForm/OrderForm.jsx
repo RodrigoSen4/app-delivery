@@ -72,7 +72,9 @@ function OrderForm({ history }) {
 }
 
 OrderForm.propTypes = {
-  history: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default OrderForm;
