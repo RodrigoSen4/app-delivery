@@ -9,7 +9,6 @@ const createSale = async (req, res) => {
 };
 
 const getOrder = async (req, res) => {
-  
   const { userId } = req.payload;
 
   const orders = await SaleService.getOrderById(userId);
@@ -17,4 +16,13 @@ const getOrder = async (req, res) => {
   return res.status(201).json(orders);
 };
 
-module.exports = { createSale, getOrder };
+const updateStatusSales = async (req, res) => {
+  const { status } = req.query;
+  const { id } = req.params;
+
+  await SaleService.updateStatus(id, status);
+
+  return res.status(201).json('ok');
+};
+
+module.exports = { createSale, getOrder, updateStatusSales };

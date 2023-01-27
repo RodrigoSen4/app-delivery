@@ -14,9 +14,12 @@ async function createSale(userId, products, saleInfo) {
 }
 
 async function getOrderById(id) {
-  const orders = await Sale.findAll({ where: { userId:  id  } });
-  console.log(orders)
+  const orders = await Sale.findAll({ where: { userId: id } });
+  console.log(orders);
   return orders;
 }
 
-module.exports = { createSale, getOrderById };
+async function updateStatus(id, status) {
+  await Sale.update({ status }, { where: { id } });
+}
+module.exports = { createSale, getOrderById, updateStatus };
