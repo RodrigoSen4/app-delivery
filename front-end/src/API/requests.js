@@ -67,4 +67,26 @@ const postSale = async (sale) => {
   return id;
 };
 
-export { doLogin, registerUser, getAllProducts, getSellers, postSale };
+const getSales = async (id = '') => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  try {
+    const { data } = await service.get(
+      `/sales/${id}`,
+      { headers: { Authorization: user.token } },
+    );
+
+    return { payload: data, status: true };
+  } catch (err) {
+    return { payload: err.response.data, status: false };
+  }
+};
+
+export {
+  doLogin,
+  registerUser,
+  getAllProducts,
+  getSellers,
+  postSale,
+  getSales,
+};
