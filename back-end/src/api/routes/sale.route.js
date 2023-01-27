@@ -6,4 +6,6 @@ const saleRouter = Router();
 
 saleRouter.post('/sales', tokenValidation, SaleController.createSale);
 
+saleRouter.get('/sales', tokenValidation, SaleController.getOrder);
+
 module.exports = saleRouter;
