@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { checkEmail, checkUserInfo, showMessage } from '../../helpers/helpers';
 import { doLogin } from '../../API/requests';
@@ -9,6 +9,14 @@ function LoginPage(props) {
   const { history } = props;
   const [message, setMessage] = useState('');
   const [userInfo, setUserInfo] = useState({ email: null, password: null });
+
+  const goToProducts = async () => {
+    const user = localStorage.getItem('user');
+
+    if (!user || !JSON.parse(user).token) return null;
+
+    return history.push('/customer/products');
+  };
 
   const login = async (info) => {
     if (!checkEmail(info.email)) return setMessage('Email inválido');
@@ -21,6 +29,10 @@ function LoginPage(props) {
 
     history.push('/customer/products');
   };
+
+  useEffect(() => {
+    goToProducts();
+  }, []);
 
   return (
     <div>
