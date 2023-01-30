@@ -11,8 +11,6 @@ const createSale = async (req, res) => {
 const getOrder = async (req, res) => {
   const { id, role } = req.payload;
 
-  console.log(id, role)
-
   const orders = await SaleService.getOrderById(id, role);
 
   return res.status(201).json(orders);
