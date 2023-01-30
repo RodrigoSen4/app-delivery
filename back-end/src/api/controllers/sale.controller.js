@@ -9,10 +9,14 @@ const createSale = async (req, res) => {
 };
 
 const getOrder = async (req, res) => {
-  const { userId } = req.payload;
+  const { id, role } = req.payload;
 
-  const orders = await SaleService.getOrderById(userId);
+  if (role === 'admin') {
+    const orders = await SaleService.getOrderById(id, 'sellerId');
+    return res.status(201).json(orders);
+  }
 
+  const orders = await SaleService.getOrderById(id, 'userId');
   return res.status(201).json(orders);
 };
 

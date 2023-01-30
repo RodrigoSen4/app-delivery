@@ -15,7 +15,6 @@ async function createSale(userId, products, saleInfo) {
 
 async function getOrderById(id) {
   const orders = await Sale.findAll({ where: { userId: id } });
-  console.log(orders);
   return orders;
 }
 
