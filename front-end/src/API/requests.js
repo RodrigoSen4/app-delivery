@@ -15,7 +15,7 @@ const doLogin = async (userInfo) => {
     localStorage.setItem('user', JSON.stringify(data));
 
     return {
-      payload: null,
+      payload: data,
       status: true,
     };
   } catch (err) {
