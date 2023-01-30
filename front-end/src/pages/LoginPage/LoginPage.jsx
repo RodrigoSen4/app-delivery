@@ -34,6 +34,7 @@ function LoginPage(props) {
 
   useEffect(() => {
     goToProducts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

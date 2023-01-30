@@ -4,6 +4,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import { getAllProducts } from '../../API/requests';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import ShopContext from '../../context/ShopContext';
+import '../../styles/ProductsPage.css';
 
 function ProductsPage({ history }) {
   const [products, setProducts] = useState([]);
@@ -31,8 +32,8 @@ function ProductsPage({ history }) {
 
   return (
     <>
-      <NavBar />
-      <section>
+      <NavBar location={ history.location.pathname } />
+      <section className="container-cards">
         {
           products.map((product) => (
             <ProductCard
@@ -63,6 +64,9 @@ function ProductsPage({ history }) {
 ProductsPage.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+    }),
   }).isRequired,
 };
 
