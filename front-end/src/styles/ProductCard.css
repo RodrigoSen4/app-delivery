@@ -69,8 +69,7 @@
   width: 50px;
 }
 
-.buttons-add-remove input::-webkit-outer-spin-button,
-.buttons-add-remove input::-webkit-inner-spin-button {
+.buttons-add-remove input::-webkit-outer-spin-button, .buttons-add-remove input::-webkit-inner-spin-button {
   appearance: none;
   margin: 0;
 }
