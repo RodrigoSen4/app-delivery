@@ -2,16 +2,16 @@ const SaleService = require('../services/sales.service');
 
 const createSale = async (req, res) => {
   const { products, saleInfo } = req.body;
-  const { userId } = req.payload;
+  const { id } = req.payload;
 
-  const newSale = await SaleService.createSale(userId, products, saleInfo);
+  const newSale = await SaleService.createSale(id, products, saleInfo);
   return res.status(201).json(newSale);
 };
 
 const getOrder = async (req, res) => {
-  const { userId } = req.payload;
+  const { id, role } = req.payload;
 
-  const orders = await SaleService.getOrderById(userId);
+  const orders = await SaleService.getOrderById(id, role);
 
   return res.status(201).json(orders);
 };

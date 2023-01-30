@@ -1,22 +1,26 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { getSales } from '../../API/requests';
-import OrderInfoCard from '../../components/OrderInfoCard';
+import OrderInfoCard from '../../components/OrderInfoCard/OrderInfoCard';
 import NavBar from '../../components/NavBar/NavBar';
 
-function OrdersPage({ history }) {
+function OrdersPage({ history, userRole }) {
   const [orders, setOrders] = useState([]);
 
   const getOrdersFromDB = async () => {
     const ordersFromDB = await getSales();
-    console.log(ordersFromDB);
     setOrders(ordersFromDB.payload);
   };
 
-  useEffect(() => { getOrdersFromDB(); }, []);
+  useEffect(() => {
+    const userInfo = localStorage.getItem('user');
+
+    if (!userInfo || !JSON.parse(userInfo).token) return history.push('/login');
+    getOrdersFromDB();
+  }, []);
 
   return (
-    <div>
+    <>
       <NavBar location={ history.location.pathname } />
       <div>
         {
@@ -24,12 +28,13 @@ function OrdersPage({ history }) {
             <OrderInfoCard
               orderInfo={ order }
               history={ history }
+              userRole={ userRole }
               key={ order.id }
             />
           ))
         }
       </div>
-    </div>
+    </>
   );
 }
 
@@ -40,6 +45,7 @@ OrdersPage.propTypes = {
       pathname: PropTypes.string,
     }),
   }).isRequired,
+  userRole: PropTypes.string.isRequired,
 };
 
 export default OrdersPage;

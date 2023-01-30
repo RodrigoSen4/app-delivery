@@ -13,9 +13,13 @@ async function createSale(userId, products, saleInfo) {
   return newSale;
 }
 
-async function getOrderById(id) {
+async function getOrderById(id, role) {
+ if (role === 'seller') {
+  const orders = await Sale.findAll({ where: { sellerId: id } });
+  return orders;
+  }
+
   const orders = await Sale.findAll({ where: { userId: id } });
-  console.log(orders);
   return orders;
 }
 

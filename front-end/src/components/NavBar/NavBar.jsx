@@ -4,7 +4,8 @@ import logout from '../../images/logout.png';
 import '../../styles/NavBar.css';
 
 function NavBar({ location }) {
-  const { name } = JSON.parse(localStorage.getItem('user'));
+  const user = localStorage.getItem('user');
+  const name = user ? JSON.parse(user).name : 'Zé';
 
   console.log(location);
 
@@ -27,7 +28,7 @@ function NavBar({ location }) {
       <p
         data-testid="customer_products__element-navbar-user-full-name"
       >
-        { name || 'Zé' }
+        { name }
       </p>
       <Link
         to="/login"
