@@ -15,7 +15,11 @@ function LoginPage(props) {
 
     if (!user || !JSON.parse(user).token) return null;
 
-    return history.push('/customer/products');
+    if (JSON.parse(user).role === 'seller') {
+      history.push('/seller/orders');
+    } else {
+      history.push('/customer/products');
+    }
   };
 
   const login = async (info) => {
@@ -27,7 +31,11 @@ function LoginPage(props) {
 
     if (!status) return setMessage(payload);
 
-    history.push('/customer/products');
+    if (payload.role === 'seller') {
+      history.push('/seller/orders');
+    } else {
+      history.push('/customer/products');
+    }
   };
 
   useEffect(() => {

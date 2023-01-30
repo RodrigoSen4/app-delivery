@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { getSales } from '../../API/requests';
-import OrderInfoCard from '../../components/OrderInfoCard';
+import OrderInfoCard from '../../components/OrderInfoCard/OrderInfoCard';
 import NavBar from '../../components/NavBar/NavBar';
 
 function OrdersPage({ history, userRole }) {
@@ -12,10 +12,15 @@ function OrdersPage({ history, userRole }) {
     setOrders(ordersFromDB.payload);
   };
 
-  useEffect(() => { getOrdersFromDB(); }, []);
+  useEffect(() => {
+    const userInfo = localStorage.getItem('user');
+
+    if (!userInfo || !JSON.parse(userInfo).token) return history.push('/login');
+    getOrdersFromDB();
+  }, []);
 
   return (
-    <div>
+    <>
       <NavBar />
       <div>
         {
@@ -29,7 +34,7 @@ function OrdersPage({ history, userRole }) {
           ))
         }
       </div>
-    </div>
+    </>
   );
 }
 
