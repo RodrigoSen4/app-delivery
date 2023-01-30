@@ -38,11 +38,11 @@ function LoginPage(props) {
 
   return (
     <div className="container-login">
-      <div className="container-title-img" data-aos="fade-right">
+      <div className="container-title-img">
         <h1 className="title">Fast Drinks</h1>
         <img src={ drinks } className="img-drinks" alt="" />
       </div>
-      <form data-aos="fade-left" className="form-login">
+      <form className="form-login">
         <h2>Login</h2>
         <div className="inputs-login">
           <label htmlFor="user-email">
