@@ -1,10 +1,9 @@
 .container-cards {
   display: grid;
   gap: 30px;
-  grid-template-areas:
+  grid-template-areas: 
     'div div div div div'
-    'div div div div div'
-  ;
+    'div div div div div';
   margin-top: 40px;
   padding: 20px;
 }
