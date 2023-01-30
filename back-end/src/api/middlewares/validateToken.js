@@ -12,7 +12,7 @@ const tokenValidation = (req, res, next) => {
     const data = jwt.verify(authorization, secret);
     req.payload = data;
 
-    if (data.role !== 'administrador') {
+    if (data.role !== 'administrator') {
       res.status(401).json({ message: 'Token is not from an admin' });
     }
     return next();

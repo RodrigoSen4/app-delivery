@@ -31,7 +31,7 @@ function AdmPage() {
         <label htmlFor="Nome">
           Nome e sobrenome:
           <input
-            data-testid="admin_manage_input-name"
+            data-testid="admin_manage__input-name"
             type="text"
             onChange={ ({ target }) => {
               setInfo({ ...infos, name: target.value });
@@ -41,7 +41,7 @@ function AdmPage() {
         <label htmlFor="email">
           Email:
           <input
-            data-testid="admin_manage_input-email"
+            data-testid="admin_manage__input-email"
             type="email"
             onChange={ ({ target }) => {
               setInfo({ ...infos, email: target.value });
@@ -51,7 +51,7 @@ function AdmPage() {
         <label htmlFor="Senha">
           Senha:
           <input
-            data-testid="admin_manage_input-password"
+            data-testid="admin_manage__input-password"
             type="password"
             onChange={ ({ target }) => {
               setInfo({ ...infos, password: target.value });
@@ -60,7 +60,11 @@ function AdmPage() {
         </label>
         <label htmlFor="Tipo">
           Tipo:
-          <select value={ infos.tipo } onChange={ handleChange }>
+          <select
+            data-testid="admin_manage__select-role"
+            value={ infos.tipo }
+            onChange={ handleChange }
+          >
             <option value="Vendedor">Vendedor</option>
             <option value="Cliente">Cliente</option>
             <option value="Administrador">Administrador</option>
@@ -69,7 +73,7 @@ function AdmPage() {
         <button
           disabled={ !checkUserInfo(infos)
             || !(infos.name && infos.name.length >= TWELVE) }
-          data-testid="admin_manage_button-register"
+          data-testid="admin_manage__button-register"
           type="button"
           onClick={ register }
         >
