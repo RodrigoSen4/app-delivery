@@ -9,6 +9,6 @@ userRoute.get('/sellers', getAllSellers);
 
 userRoute.post('/register', validateUser, createUser);
 
-userRoute.post('/register/admin', tokenValidation, validateUser, adminCreateNewUser);
+userRoute.post('/register/admin', tokenValidation,validateUser, adminCreateNewUser);
 
 module.exports = userRoute;

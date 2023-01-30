@@ -58,4 +58,15 @@ const getSellers = async () => {
   return sellers.data;
 };
 
-export { doLogin, registerUser, getAllProducts, getSellers };
+const registerAdm = async (userInfo) => {
+  try {
+    await service.post('/register/admin', userInfo);
+    return {
+      status: true,
+    };
+  } catch (err) {
+    return { erro: 'erro', status: false };
+  }
+};
+
+export { doLogin, registerUser, getAllProducts, getSellers, registerAdm };
