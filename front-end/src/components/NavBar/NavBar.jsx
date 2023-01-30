@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 
 function NavBar() {
-  const { name } = JSON.parse(localStorage.getItem('user'));
+  const user = localStorage.getItem('user');
+  const name = user ? JSON.parse(user).name : 'Zé';
 
   return (
     <nav style={ { display: 'flex', justifyContent: 'space-between' } }>
@@ -12,7 +13,7 @@ function NavBar() {
         Produtos
       </Link>
       <Link
-        to="/meus_pedidos"
+        to="/customer/orders"
         data-testid="customer_products__element-navbar-link-orders"
       >
         Meus Pedidos
@@ -20,7 +21,7 @@ function NavBar() {
       <p
         data-testid="customer_products__element-navbar-user-full-name"
       >
-        { name || 'Zé' }
+        { name }
       </p>
       <Link
         to="/login"

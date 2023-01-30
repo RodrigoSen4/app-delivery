@@ -1,21 +1,29 @@
-const { Product, Sale, SaleProduct } = require('../../database/models');
+const { Sale, SaleProduct } = require('../../database/models');
 
 async function createSale(userId, products, saleInfo) {
-  let totalPrice = 0;
-  await Promise.all(products.map(async (product) => {
-    const productById = await Product.findOne({ where: { id: product.productId } });
-    const productPrice = productById.price * product.quantity;
-    totalPrice += productPrice;
-  }));
-  const obj = {
-    userId, sellerId: 2, totalPrice, ...saleInfo, saleDate: new Date(), status: 'Pendente',
-  };
+  const obj = { userId, ...saleInfo, saleDate: new Date(), status: 'Pendente' };
+
   const newSale = await Sale.create(obj);
+
   await Promise.all(products.map(async (product) => {
     const obj2 = { productId: product.productId, saleId: newSale.id, quantity: product.quantity };
     await SaleProduct.create(obj2);
   }));
+  
   return newSale;
 }
 
-module.exports = { createSale };
+async function getOrderById(id, role) {
+ if (role === 'seller') {
+  const orders = await Sale.findAll({ where: { sellerId: id } });
+  return orders;
+  }
+
+  const orders = await Sale.findAll({ where: { userId: id } });
+  return orders;
+}
+
+async function updateStatus(id, status) {
+  await Sale.update({ status }, { where: { id } });
+}
+module.exports = { createSale, getOrderById, updateStatus };

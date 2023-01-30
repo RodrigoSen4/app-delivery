@@ -73,7 +73,9 @@ function RegisterPage(props) {
 }
 
 RegisterPage.propTypes = {
-  history: PropTypes.objectOf().isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default RegisterPage;

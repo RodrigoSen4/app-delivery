@@ -8,7 +8,9 @@ import ShopContext from '../../context/ShopContext';
 function ProductsPage({ history }) {
   const [products, setProducts] = useState([]);
   const { products: orderedProducts } = useContext(ShopContext);
+
   let totalPrice = 0;
+
   orderedProducts.forEach((product) => {
     const price = product.price * product.quantity;
     totalPrice += price;
@@ -27,15 +29,16 @@ function ProductsPage({ history }) {
     renderAllProducts();
   }, []);
 
-  console.log(totalPrice);
-
   return (
     <>
       <NavBar />
       <section>
         {
           products.map((product) => (
-            <ProductCard key={ `${product.name}-${product.id}` } props={ product } />
+            <ProductCard
+              key={ `${product.name}-${product.id}` }
+              productInfo={ product }
+            />
           ))
         }
       </section>
@@ -58,7 +61,9 @@ function ProductsPage({ history }) {
 }
 
 ProductsPage.propTypes = {
-  history: PropTypes.objectOf().isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default ProductsPage;

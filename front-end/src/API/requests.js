@@ -15,7 +15,7 @@ const doLogin = async (userInfo) => {
     localStorage.setItem('user', JSON.stringify(data));
 
     return {
-      payload: null,
+      payload: data,
       status: true,
     };
   } catch (err) {
@@ -44,7 +44,6 @@ const registerUser = async (userInfo) => {
 
 const getAllProducts = async () => {
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log(user);
   const { data } = await service.get('/products', {
     headers: {
       Authorization: user.token,
@@ -69,4 +68,37 @@ const registerAdm = async (userInfo) => {
   }
 };
 
-export { doLogin, registerUser, getAllProducts, getSellers, registerAdm };
+const postSale = async (sale) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const { data: { id } } = await service.post('/sales', sale, {
+    headers: { Authorization: user.token },
+  });
+
+  return id;
+};
+
+const getSales = async (id = '') => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  try {
+    const { data } = await service.get(
+      `/sales/${id}`,
+      { headers: { Authorization: user.token } },
+    );
+
+    return { payload: data, status: true };
+  } catch (err) {
+    return { payload: err.response.data, status: false };
+  }
+};
+
+export {
+  doLogin,
+  registerUser,
+  getAllProducts,
+  getSellers,
+  postSale,
+  registerAdm,
+  getSales,
+};
