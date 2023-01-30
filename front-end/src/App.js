@@ -4,7 +4,7 @@ import ProductsPage from './pages/ProductsPage/ProductsPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import CartPage from './pages/CartPage/CartPage';
-/* import OrdersPage from './pages/OrdersPage/OrdersPage'; */
+import OrdersPage from './pages/OrdersPage/OrdersPage';
 import DetailsOrderPage from './pages/DetailsOrderPage/DetailsOrderPage';
 import './App.css';
 
@@ -15,17 +15,16 @@ function App() {
       <Route path="/register" component={ RegisterPage } />
       <Route path="/customer/products" component={ ProductsPage } />
       <Route path="/customer/checkout" component={ CartPage } />
-      {/* <Route
+      <Route
         exact
         path="/customer/orders"
-      >
-        <OrdersPage userRole="customer" />
-      </Route>
+        render={ (props) => <OrdersPage { ...props } userRole="customer" /> }
+      />
       <Route
         exact
         path="/seller/orders"
         render={ (props) => <OrdersPage { ...props } userRole="seller" /> }
-      /> */}
+      />
       <Route exact path="/customer/orders/:id" component={ DetailsOrderPage } />
       <Route exact path="/seller/orders/:id" component={ DetailsOrderPage } />
       <Route>

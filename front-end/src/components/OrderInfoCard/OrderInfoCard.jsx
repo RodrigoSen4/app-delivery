@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
+import AddressComponent from './AddressComponent';
 
 const TEN = 10;
 
 function OrderInfoCard({ orderInfo, history, userRole }) {
   const date = orderInfo.saleDate.slice(0, TEN).split('-');
   const formatedDate = `${date[2]}/${date[1]}/${date[0]}`;
+
+  console.log(orderInfo);
 
   return (
     <button
@@ -33,6 +36,13 @@ function OrderInfoCard({ orderInfo, history, userRole }) {
         >
           { orderInfo.totalPrice.replace('.', ',') }
         </p>
+        { userRole === 'seller' ? <AddressComponent
+          address={ {
+            deliveryAddress: orderInfo.deliveryAddress,
+            deliveryNumber: orderInfo.deliveryNumber,
+            id: orderInfo.id,
+          } }
+        /> : null }
       </div>
     </button>
   );
@@ -47,6 +57,8 @@ OrderInfoCard.propTypes = {
     status: PropTypes.string,
     saleDate: PropTypes.string,
     totalPrice: PropTypes.string,
+    deliveryAddress: PropTypes.string,
+    deliveryNumber: PropTypes.string,
   }).isRequired,
   userRole: PropTypes.string.isRequired,
 };
