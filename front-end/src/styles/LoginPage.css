@@ -1,0 +1,181 @@
+@font-face {
+  font-family: Jack;
+  src: url('../fonts/Jasper\ Daniels.ttf');
+}
+
+@keyframes slideInFromLeft {
+
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+
+}
+
+@keyframes slideInFromRight {
+
+  0% {
+    transform: translateX(+100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+
+}
+
+.container-login {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: space-evenly;
+}
+
+.container-title-img {
+  align-items: center;
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: Jack , Arial , sans-serif;
+  font-size: 90px;
+  font-weight: 100;
+  margin-bottom: 80px;
+}
+
+.img-drinks {
+  width: 400px;
+}
+
+.form-login {
+  align-items: center;
+  animation: 1s ease-out 0s 1 slideInFromRight;
+  border: solid 3px black;
+  border-radius: 100px 30px;
+  display: flex;
+  flex-direction: column;
+  height: 550px;
+  justify-content: space-around;
+  width: 400px;
+}
+
+.form-login h2 {
+  color: black;
+  font-family: Jack , Arial , sans-serif;
+  font-size: 60px;
+  font-weight: 100;
+}
+
+.inputs-login {
+  display: flex;
+  flex-direction: column;
+  height: 25%;
+  justify-content: space-between;
+}
+
+.inputs-login input {
+  border: solid 3px black;
+  border-radius: 20px 10px;
+  display: flex;
+  font-size: 20px;
+  margin-bottom: 25px;
+  padding: 10px;
+}
+
+.inputs-login input:focus {
+  outline: none;
+}
+
+.login-button {
+  background-color: #ffa652;
+  border: none;
+  border-radius: 20px;
+  color: black;
+  font-family: Jack , Arial , sans-serif;
+  font-size: 40px;
+  margin-top: 30px;
+  padding: 10px;
+  transition: 300ms;
+  width: 50%;
+}
+
+.login-button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.login-button:disabled {
+  background-color: #ffa6527c;
+  border: none;
+  border-radius: 20px;
+  color: rgba(0, 0, 0, 0.459);
+  font-family: Jack , Arial , sans-serif;
+  font-size: 40px;
+  margin-top: 30px;
+  padding: 10px;
+  width: 50%;
+}
+
+.login-button:disabled:hover {
+  background-color: #ffa6527c;
+  cursor: default;
+  transform: none;
+}
+
+.not-registered {
+  background: none;
+  border: none;
+  font-family: Jack , Arial , sans-serif;
+  font-size: 35px;
+  margin-bottom: 40px;
+  padding: 10px;
+  transition: 100ms;
+}
+
+.not-registered:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+@media screen and ( max-width : 1380px ) {
+
+  .title {
+    font-size: 60px;
+  }
+
+  .img-drinks {
+    width: 300px;
+  }
+
+  .form-login {
+    height: 450px;
+    width: 300px;
+  }
+
+  .form-login h2 {
+    font-size: 40px;
+  }
+
+  .inputs-login input {
+    font-size: 18px;
+  }
+
+  .login-button {
+    font-size: 25px;
+    padding: 8px;
+  }
+
+  .login-button:disabled {
+    font-size: 25px;
+    padding: 8px;
+  }
+
+  .not-registered {
+    font-size: 28px;
+  }
+}
