@@ -4,12 +4,11 @@ import { getSales } from '../../API/requests';
 import OrderInfoCard from '../../components/OrderInfoCard';
 import NavBar from '../../components/NavBar/NavBar';
 
-function OrdersPage({ history }) {
+function OrdersPage({ history, userRole }) {
   const [orders, setOrders] = useState([]);
 
   const getOrdersFromDB = async () => {
     const ordersFromDB = await getSales();
-    console.log(ordersFromDB);
     setOrders(ordersFromDB.payload);
   };
 
@@ -24,6 +23,7 @@ function OrdersPage({ history }) {
             <OrderInfoCard
               orderInfo={ order }
               history={ history }
+              userRole={ userRole }
               key={ order.id }
             />
           ))
@@ -37,6 +37,7 @@ OrdersPage.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
+  userRole: PropTypes.string.isRequired,
 };
 
 export default OrdersPage;

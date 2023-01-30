@@ -15,7 +15,16 @@ function App() {
       <Route path="/register" component={ RegisterPage } />
       <Route path="/customer/products" component={ ProductsPage } />
       <Route path="/customer/checkout" component={ CartPage } />
-      <Route exact path="/customer/orders" component={ OrdersPage } />
+      <Route
+        exact
+        path="/customer/orders"
+        render={ (props) => <OrdersPage { ...props } userRole="customer" /> }
+      />
+      <Route
+        exact
+        path="/seller/orders"
+        render={ (props) => <OrdersPage { ...props } userRole="seller" /> }
+      />
       <Route exact path="/customer/orders/:id" component={ DetailsOrderPage } />
       <Route>
         <Redirect to="/login" />
