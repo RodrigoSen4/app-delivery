@@ -7,8 +7,6 @@ function NavBar({ location }) {
   const user = localStorage.getItem('user');
   const name = user ? JSON.parse(user).name : 'Zé';
 
-  console.log(location);
-
   return (
     <nav>
       <Link
