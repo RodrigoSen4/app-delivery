@@ -32,19 +32,19 @@
 }
 
 .Pendente {
-  background-color: #D4C63C;
+  background-color: #d4c63c;
   border-radius: 10px;
   padding: 10px;
 }
 
 .Entregue {
-  background-color: #3BD5B0;
+  background-color: #3bd5b0;
   border-radius: 10px;
   padding: 10px;
 }
 
 .Preparando {
-  background-color: #87D53C;
+  background-color: #87d53c;
   border-radius: 10px;
   padding: 10px;
 }
