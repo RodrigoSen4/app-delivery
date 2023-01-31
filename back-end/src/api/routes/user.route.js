@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { createUser, getAllSellers, adminCreateNewUser } = require('../controllers/user.controller');
 const validateUser = require('../middlewares/validateUser');
-const { tokenValidation, tokenValidationAdm } = require('../middlewares/validateToken');
+const { tokenValidationAdm } = require('../middlewares/validateToken');
 
 const userRoute = Router();
 
