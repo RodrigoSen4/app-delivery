@@ -5,6 +5,7 @@ import { getAllProducts } from '../../API/requests';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import ShopContext from '../../context/ShopContext';
 import '../../styles/ProductsPage.css';
+import cart from '../../images/cart.png';
 
 function ProductsPage({ history }) {
   const [products, setProducts] = useState([]);
@@ -41,7 +42,7 @@ function ProductsPage({ history }) {
           onClick={ () => history.push('/customer/checkout') }
           disabled={ totalPrice === 0 }
         >
-          Ver Carrinho:
+          <img width="30" src={ cart } alt="" />
           {' '}
           <span
             data-testid="customer_products__checkout-bottom-value"
