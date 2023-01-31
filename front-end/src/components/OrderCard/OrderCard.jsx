@@ -1,12 +1,16 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import ShopContext from '../../context/ShopContext';
+import trash from '../../images/trash.png';
+import opentrash from '../../images/opentrash.png';
 
 function OrderCard({ orderInfo }) {
   const { products, setProducts } = useContext(ShopContext);
+  const [trashButton, setTrashButton] = useState(trash);
 
   return (
-    <div style={ { display: 'flex', gap: '16px', padding: '8px', fontSize: '20px' } }>
+    <div className="order-card">
+      <img className="product-img" src={ orderInfo.urlImage } alt="" />
       <p
         data-testid={
           `customer_checkout__element-order-table-item-number-${orderInfo.index}`
@@ -41,6 +45,8 @@ function OrderCard({ orderInfo }) {
         { (orderInfo.price * orderInfo.quantity).toFixed(2).toString().replace('.', ',') }
       </p>
       <button
+        onMouseMove={ () => setTrashButton(opentrash) }
+        onMouseLeave={ () => setTrashButton(trash) }
         data-testid={ `customer_checkout__element-order-table-remove-${orderInfo.index}` }
         type="button"
         onClick={ () => {
@@ -49,7 +55,7 @@ function OrderCard({ orderInfo }) {
           setProducts(updatedProducts);
         } }
       >
-        Remover
+        <img width="47" src={ trashButton } alt="" />
       </button>
     </div>
   );
@@ -61,6 +67,7 @@ OrderCard.propTypes = {
     name: PropTypes.string,
     quantity: PropTypes.number,
     price: PropTypes.string,
+    urlImage: PropTypes.string,
   }).isRequired,
 };
 

@@ -20,7 +20,7 @@ function SelectSeller({ orderInfo: { order, setOrder } }) {
 
   return (
     <label htmlFor="seller-selector">
-      Vendedor Responsável:
+      <span>Vendedor Responsável:</span>
       <select
         data-testid="customer_checkout__select-seller"
         id="seller-selector"
