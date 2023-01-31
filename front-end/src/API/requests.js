@@ -30,6 +30,7 @@ const registerUser = async (userInfo) => {
   try {
     const { data } = await service.post('/register', userInfo);
     localStorage.setItem('user', JSON.stringify(data));
+
     return {
       payload: null,
       status: true,
@@ -57,9 +58,14 @@ const getSellers = async () => {
   return sellers.data;
 };
 
-const registerAdm = async (userInfo) => {
+const registerAdm = async (userInfo, admToken) => {
   try {
-    await service.post('/register/admin', userInfo);
+    await service.post('/register/admin', userInfo, {
+      headers: {
+        Authorization: admToken,
+      },
+    });
+
     return {
       status: true,
     };

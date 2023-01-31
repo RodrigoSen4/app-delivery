@@ -7,7 +7,7 @@ function AdmPage() {
     name: null,
     email: null,
     password: null,
-    role: 'Default',
+    role: 'customer',
   });
 
   const [message, setMessage] = useState('');
@@ -19,7 +19,10 @@ function AdmPage() {
   const TWELVE = 12;
 
   const register = async () => {
-    const { erro, status } = await registerAdm(infos);
+    const admToken = JSON.parse(localStorage.getItem('user')).token;
+
+    const { erro, status } = await registerAdm(infos, admToken);
+
     if (!status) {
       setMessage(erro);
     }
@@ -65,9 +68,9 @@ function AdmPage() {
             value={ infos.tipo }
             onChange={ handleChange }
           >
-            <option value="Vendedor">Vendedor</option>
-            <option value="Cliente">Cliente</option>
-            <option value="Administrador">Administrador</option>
+            <option value="seller">Vendedor</option>
+            <option value="customer">Cliente</option>
+            <option value="administrator">Administrador</option>
           </select>
         </label>
         <button
