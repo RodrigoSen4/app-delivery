@@ -21,7 +21,7 @@ function OrdersPage({ history, userRole }) {
 
   return (
     <>
-      <NavBar />
+      <NavBar location={ history.location.pathname } />
       <div>
         {
           orders.map((order) => (
@@ -41,6 +41,9 @@ function OrdersPage({ history, userRole }) {
 OrdersPage.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+    }),
   }).isRequired,
   userRole: PropTypes.string.isRequired,
 };
