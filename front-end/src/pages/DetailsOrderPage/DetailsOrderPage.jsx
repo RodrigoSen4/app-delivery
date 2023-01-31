@@ -20,6 +20,7 @@ function DetailsOrderPage({ match: { params: { id } } }) {
 
   useEffect(() => {
     getOrderFromDB();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

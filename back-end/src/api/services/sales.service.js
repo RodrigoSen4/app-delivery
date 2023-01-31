@@ -30,12 +30,12 @@ const getSaleById = async (role, userId, id) => {
       {
         model: Product,
         as: 'products',
-        attributes: { exclude: ['id'] }
+        attributes: { exclude: ['id'] },
       },
       {
         model: User,
         as: 'seller',
-      }
+      },
     ],
   });
 

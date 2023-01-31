@@ -19,17 +19,14 @@ const getOrder = async (req, res) => {
 
 // busca SALE específico por SALE-ID
 const getSaleById = async (req, res) => {
-  const payload = req.payload;
-  const userId = payload.id;
-  const role = payload.role;
+  const { id: userId, role } = req.payload;
 
-  const { headers: { authorization }, params: { id } } = req;
+  const { params: { id } } = req;
 
-  const data  = await SaleService.getSaleById(role, userId, id);
+  const data = await SaleService.getSaleById(role, userId, id);
   
-  /* console.log(data); */
-  return res.status(201).json( data );
-}
+  return res.status(201).json(data);
+};
 
 const updateStatusSales = async (req, res) => {
   const { status } = req.query;
