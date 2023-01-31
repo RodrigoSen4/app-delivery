@@ -11,6 +11,10 @@ const tokenValidation = (req, res, next) => {
   try {
     const data = jwt.verify(authorization, secret);
     req.payload = data;
+
+    if (data.role !== 'administrator') {
+      res.status(401).json({ message: 'Token is not from an admin' });
+    }
     return next();
   } catch (error) {
     return res.status(401).json({ message: 'Expired or invalid token' });
