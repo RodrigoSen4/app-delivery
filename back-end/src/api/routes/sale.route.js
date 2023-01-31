@@ -10,6 +10,6 @@ saleRouter.get('/sales', tokenValidation, SaleController.getOrder);
 
 saleRouter.get('/sales/:id', tokenValidation, SaleController.getSaleById);
 
-saleRouter.post('/sales/:id', SaleController.updateStatusSales);
+saleRouter.post('/sales/:id', tokenValidation, SaleController.updateStatusSales);
 
 module.exports = saleRouter;

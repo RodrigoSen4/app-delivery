@@ -22,9 +22,12 @@ const getSaleById = async (req, res) => {
   const payload = req.payload;
   const userId = payload.id;
   const role = payload.role;
+
   const { headers: { authorization }, params: { id } } = req;
+
   const data  = await SaleService.getSaleById(role, userId, id);
-  console.log(data);
+  
+  /* console.log(data); */
   return res.status(201).json( data );
 }
 

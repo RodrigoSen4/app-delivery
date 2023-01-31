@@ -24,21 +24,22 @@ async function getOrderById(id, role) {
 }
 
 const getSaleById = async (role, userId, id) => {
-  
   const data = await Sale.findOne({
+    where: role === 'customer' ? { userId, id } : { sellerId: userId, id },
     include: [
-    //   {
-    //   model: Product,
-    //   as: 'products',
-    //   through: { attributes: ['quantity'] },
-    // },
-    {
-      model: User,
-      as: 'seller',
-    }],
-  where: role === 'customer' ? { userId, id } : { sellerId: userId, id },
+      {
+        model: Product,
+        as: 'products',
+        attributes: { exclude: ['id'] }
+      },
+      {
+        model: User,
+        as: 'seller',
+      }
+    ],
   });
-    return data;
+
+  return data;
 };
 
 async function updateStatus(id, status) {

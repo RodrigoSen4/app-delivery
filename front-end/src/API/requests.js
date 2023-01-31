@@ -90,6 +90,7 @@ const getSalesById = async (id) => {
       `/sales/${id}`,
       { headers: { Authorization: user.token } },
     );
+
     return resp.data;
   } catch (err) {
     return { payload: err.response.data, status: false };
