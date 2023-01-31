@@ -50,6 +50,7 @@ const getAllProducts = async () => {
       Authorization: user.token,
     },
   });
+  console.log(data);
   return data;
 };
 
