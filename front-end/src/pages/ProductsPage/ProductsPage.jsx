@@ -33,6 +33,23 @@ function ProductsPage({ history }) {
   return (
     <>
       <NavBar location={ history.location.pathname } />
+      <div className="container-button">
+        <button
+          className="button-cart"
+          type="button"
+          data-testid="customer_products__button-cart"
+          onClick={ () => history.push('/customer/checkout') }
+          disabled={ totalPrice === 0 }
+        >
+          Ver Carrinho:
+          {' '}
+          <span
+            data-testid="customer_products__checkout-bottom-value"
+          >
+            { totalPrice.toFixed(2).toString().replace('.', ',') }
+          </span>
+        </button>
+      </div>
       <section className="container-cards">
         {
           products.map((product) => (
@@ -43,20 +60,6 @@ function ProductsPage({ history }) {
           ))
         }
       </section>
-      <button
-        type="button"
-        data-testid="customer_products__button-cart"
-        onClick={ () => history.push('/customer/checkout') }
-        disabled={ totalPrice === 0 }
-      >
-        Ver Carrinho:
-        {' '}
-        <span
-          data-testid="customer_products__checkout-bottom-value"
-        >
-          { totalPrice.toFixed(2).toString().replace('.', ',') }
-        </span>
-      </button>
     </>
   );
 }
