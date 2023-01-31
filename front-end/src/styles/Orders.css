@@ -1,9 +1,12 @@
 .container-orders-items {
   align-items: center;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 30px;
+  grid-template-areas: 'div div div'
+    'div div div';
   margin-bottom: 70px;
   margin-top: 50px;
+  padding: 50px;
 }
 
 .order-item {
@@ -14,7 +17,6 @@
   cursor: pointer;
   display: flex;
   margin-bottom: 25px;
-  width: 80%;
 }
 
 .container-info {
