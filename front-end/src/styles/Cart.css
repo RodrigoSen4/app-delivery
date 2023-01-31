@@ -28,7 +28,7 @@
   width: 10%;
 }
 
-.order-card p:nth-child(3) {
+.order-card p:nth-child( 3 ) {
   width: 40%;
 }
 
@@ -116,7 +116,7 @@
   border-radius: 10px;
   color: white;
   cursor: pointer;
-  font-family: Jack;
+  font-family: Jack , Arial , sans-serif;
   font-size: 27px;
   padding: 10px;
   transition: 200ms;
