@@ -19,7 +19,11 @@ function CartPage({ history }) {
       <div className="container-orders">
         {
           products.map((product, index) => (
-            <OrderCard orderInfo={ { ...product, index } } key={ product.name } />
+            <OrderCard
+              orderInfo={ { ...product, index } }
+              page="checkout"
+              key={ product.name }
+            />
           ))
         }
       </div>

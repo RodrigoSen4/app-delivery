@@ -4,7 +4,7 @@ import ShopContext from '../../context/ShopContext';
 import trash from '../../images/trash.png';
 import opentrash from '../../images/opentrash.png';
 
-function OrderCard({ orderInfo }) {
+function OrderCard({ orderInfo, page }) {
   const { products, setProducts } = useContext(ShopContext);
   const [trashButton, setTrashButton] = useState(trash);
 
@@ -13,41 +13,41 @@ function OrderCard({ orderInfo }) {
       <img className="product-img" src={ orderInfo.urlImage } alt="" />
       <p
         data-testid={
-          `customer_checkout__element-order-table-item-number-${orderInfo.index}`
+          `customer_${page}__element-order-table-item-number-${orderInfo.index}`
         }
       >
         { orderInfo.index + 1 }
       </p>
       <p
-        data-testid={ `customer_checkout__element-order-table-name-${orderInfo.index}` }
+        data-testid={ `customer_${page}__element-order-table-name-${orderInfo.index}` }
       >
         { orderInfo.name }
       </p>
       <p
         data-testid={
-          `customer_checkout__element-order-table-quantity-${orderInfo.index}`
+          `customer_${page}__element-order-table-quantity-${orderInfo.index}`
         }
       >
         { orderInfo.quantity }
       </p>
       <p
         data-testid={
-          `customer_checkout__element-order-table-unit-price-${orderInfo.index}`
+          `customer_${page}__element-order-table-unit-price-${orderInfo.index}`
         }
       >
         { orderInfo.price.toString().replace('.', ',') }
       </p>
       <p
         data-testid={
-          `customer_checkout__element-order-table-sub-total-${orderInfo.index}`
+          `customer_${page}__element-order-table-sub-total-${orderInfo.index}`
         }
       >
         { (orderInfo.price * orderInfo.quantity).toFixed(2).toString().replace('.', ',') }
       </p>
       <button
+        data-testid={ `customer_${page}__element-order-table-remove-${orderInfo.index}` }
         onMouseMove={ () => setTrashButton(opentrash) }
         onMouseLeave={ () => setTrashButton(trash) }
-        data-testid={ `customer_checkout__element-order-table-remove-${orderInfo.index}` }
         type="button"
         onClick={ () => {
           const updatedProducts = products
@@ -69,6 +69,7 @@ OrderCard.propTypes = {
     price: PropTypes.string,
     urlImage: PropTypes.string,
   }).isRequired,
+  page: PropTypes.string.isRequired,
 };
 
 export default OrderCard;
