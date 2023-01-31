@@ -8,13 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-<<<<<<< HEAD
     role: {
       type: DataTypes.STRING,
     },
-=======
-    role: { type: DataTypes.STRING, defaultValue: 'customer' }
->>>>>>> ea6b2de5177457c94d661e89910f4df49ae02346
   },
   {
     timestamps: false,
