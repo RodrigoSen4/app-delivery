@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { getSales } from '../../API/requests';
 import OrderInfoCard from '../../components/OrderInfoCard/OrderInfoCard';
 import NavBar from '../../components/NavBar/NavBar';
+import '../../styles/Orders.css';
 
 function OrdersPage({ history, userRole }) {
   const [orders, setOrders] = useState([]);
@@ -22,7 +23,7 @@ function OrdersPage({ history, userRole }) {
   return (
     <>
       <NavBar location={ history.location.pathname } />
-      <div>
+      <div className="container-orders-items">
         {
           orders.map((order) => (
             <OrderInfoCard

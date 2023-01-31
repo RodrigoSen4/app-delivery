@@ -11,10 +11,11 @@ function OrderInfoCard({ orderInfo, history, userRole }) {
 
   return (
     <button
+      className="order-item"
       type="button"
       onClick={ () => { history.push(`/${userRole}/orders/${orderInfo.id}`); } }
     >
-      <div style={ { display: 'flex', gap: '16px', padding: '8px', fontSize: '20px' } }>
+      <div className="container-info">
         <p
           data-testid={ `${userRole}_orders__element-order-id-${orderInfo.id}` }
         >
@@ -22,20 +23,23 @@ function OrderInfoCard({ orderInfo, history, userRole }) {
           { orderInfo.id }
         </p>
         <p
+          className={ `${orderInfo.status}` }
           data-testid={ `${userRole}_orders__element-delivery-status-${orderInfo.id}` }
         >
           { orderInfo.status }
         </p>
-        <p
-          data-testid={ `${userRole}_orders__element-order-date-${orderInfo.id}` }
-        >
-          { formatedDate }
-        </p>
-        <p
-          data-testid={ `${userRole}_orders__element-card-price-${orderInfo.id}` }
-        >
-          { orderInfo.totalPrice.replace('.', ',') }
-        </p>
+        <div className="date-price">
+          <p
+            data-testid={ `${userRole}_orders__element-order-date-${orderInfo.id}` }
+          >
+            { formatedDate }
+          </p>
+          <p
+            data-testid={ `${userRole}_orders__element-card-price-${orderInfo.id}` }
+          >
+            { orderInfo.totalPrice.replace('.', ',') }
+          </p>
+        </div>
         { userRole === 'seller' ? <AddressComponent
           address={ {
             deliveryAddress: orderInfo.deliveryAddress,
