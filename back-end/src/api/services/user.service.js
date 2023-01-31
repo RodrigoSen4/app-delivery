@@ -11,9 +11,15 @@ const create = async ({ name, email, password }) => {
   return user;
 };
 
+const createNewUser = async ({ name, email, password, role }) => {
+  const newUser = await User.create({ name, email, password, role });
+  return newUser;
+};
+
 module.exports = {
   getByEmail,
   getByName,
   create,
   getSellers,
+  createNewUser,
 };

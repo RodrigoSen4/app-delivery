@@ -30,6 +30,7 @@ const registerUser = async (userInfo) => {
   try {
     const { data } = await service.post('/register', userInfo);
     localStorage.setItem('user', JSON.stringify(data));
+
     return {
       payload: null,
       status: true,
@@ -49,12 +50,29 @@ const getAllProducts = async () => {
       Authorization: user.token,
     },
   });
+  console.log(data);
   return data;
 };
 
 const getSellers = async () => {
   const sellers = await service.get('/sellers');
   return sellers.data;
+};
+
+const registerAdm = async (userInfo, admToken) => {
+  try {
+    await service.post('/register/admin', userInfo, {
+      headers: {
+        Authorization: admToken,
+      },
+    });
+
+    return {
+      status: true,
+    };
+  } catch (err) {
+    return { erro: 'erro', status: false };
+  }
 };
 
 const postSale = async (sale) => {
@@ -103,6 +121,7 @@ export {
   getAllProducts,
   getSellers,
   postSale,
+  registerAdm,
   getSales,
   getSalesById,
 };

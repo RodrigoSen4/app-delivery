@@ -4,6 +4,8 @@ import NavBar from '../../components/NavBar/NavBar';
 import { getAllProducts } from '../../API/requests';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import ShopContext from '../../context/ShopContext';
+import '../../styles/ProductsPage.css';
+import cart from '../../images/cart.png';
 
 function ProductsPage({ history }) {
   const [products, setProducts] = useState([]);
@@ -31,8 +33,25 @@ function ProductsPage({ history }) {
 
   return (
     <>
-      <NavBar />
-      <section>
+      <NavBar location={ history.location.pathname } />
+      <div className="container-button">
+        <button
+          className="button-cart"
+          type="button"
+          data-testid="customer_products__button-cart"
+          onClick={ () => history.push('/customer/checkout') }
+          disabled={ totalPrice === 0 }
+        >
+          <img width="30" src={ cart } alt="" />
+          {' '}
+          <span
+            data-testid="customer_products__checkout-bottom-value"
+          >
+            { totalPrice.toFixed(2).toString().replace('.', ',') }
+          </span>
+        </button>
+      </div>
+      <section className="container-cards">
         {
           products.map((product) => (
             <ProductCard
@@ -42,20 +61,6 @@ function ProductsPage({ history }) {
           ))
         }
       </section>
-      <button
-        type="button"
-        data-testid="customer_products__button-cart"
-        onClick={ () => history.push('/customer/checkout') }
-        disabled={ totalPrice === 0 }
-      >
-        Ver Carrinho:
-        {' '}
-        <span
-          data-testid="customer_products__checkout-bottom-value"
-        >
-          { totalPrice.toFixed(2).toString().replace('.', ',') }
-        </span>
-      </button>
     </>
   );
 }
@@ -63,6 +68,9 @@ function ProductsPage({ history }) {
 ProductsPage.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+    }),
   }).isRequired,
 };
 

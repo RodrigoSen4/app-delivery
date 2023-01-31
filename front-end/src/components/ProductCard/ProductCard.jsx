@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import ShopContext from '../../context/ShopContext';
+import '../../styles/ProductCard.css';
 
 const MENOSUM = -1;
 
@@ -11,10 +12,7 @@ function ProductCard(props) {
   const item = products.find((item2) => item2.name === productInfo.name) || 0;
 
   return (
-    <div>
-      <p data-testid={ `customer_products__element-card-price-${productInfo.id}` }>
-        { productInfo.price.replace('.', ',') }
-      </p>
+    <div className="product-card">
       <img
         data-testid={ `customer_products__img-card-bg-image-${productInfo.id}` }
         src={ productInfo.urlImage }
@@ -22,11 +20,18 @@ function ProductCard(props) {
         width="200px"
       />
       <p
+        className="product-name"
         data-testid={ `customer_products__element-card-title-${productInfo.id}` }
       >
         { productInfo.name }
       </p>
-      <div>
+      <p
+        className="product-price"
+        data-testid={ `customer_products__element-card-price-${productInfo.id}` }
+      >
+        { productInfo.price.replace('.', ',') }
+      </p>
+      <div className="buttons-add-remove">
         <button
           data-testid={ `customer_products__button-card-add-item-${productInfo.id}` }
           type="button"

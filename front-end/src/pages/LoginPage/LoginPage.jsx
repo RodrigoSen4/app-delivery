@@ -34,14 +34,18 @@ function LoginPage(props) {
     if (!status) return setMessage(payload);
 
     if (payload.role === 'seller') {
-      history.push('/seller/orders');
-    } else {
-      history.push('/customer/products');
+      return history.push('/seller/orders');
     }
+
+    if (payload.role === 'administrator') {
+      return history.push('/admin/manage');
+    }
+    history.push('/customer/products');
   };
 
   useEffect(() => {
     goToProducts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

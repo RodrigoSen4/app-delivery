@@ -1,0 +1,55 @@
+.container-cards {
+  display: grid;
+  gap: 30px;
+  grid-template-areas: 'div div div div div'
+    'div div div div div';
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.container-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button-cart {
+  align-items: center;
+  background-color: rgb(231, 231, 231);
+  border: none;
+  border-radius: 10px;
+  color: black;
+  cursor: pointer;
+  display: flex;
+  font-family: Arial , Helvetica , sans-serif;
+  font-size: 18px;
+  padding: 10px;
+  transition: 250ms;
+}
+
+.button-cart img {
+  margin-right: 10px;
+}
+
+.button-cart:hover {
+  background-color: rgb(221, 221, 221);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.603);
+  transform: scale(1.03);
+}
+
+.button-cart:disabled {
+  background-color: rgb(241, 241, 241);
+  border-radius: 10px;
+  color: rgba(0, 0, 0, 0.336);
+  font-family: Arial , Helvetica , sans-serif;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.button-cart:disabled:hover {
+  background-color: rgb(241, 241, 241);
+  box-shadow: none;
+  color: rgba(0, 0, 0, 0.336);
+  cursor: default;
+  transform: none;
+}
