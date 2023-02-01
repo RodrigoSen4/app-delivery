@@ -100,6 +100,11 @@ const getSales = async (id = '') => {
   }
 };
 
+const getUsers = async () => {
+  const users = await service.get('/users');
+  return users.data;
+};
+
 export {
   doLogin,
   registerUser,
@@ -108,4 +113,5 @@ export {
   postSale,
   registerAdm,
   getSales,
+  getUsers,
 };

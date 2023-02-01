@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { checkUserInfo, showMessage } from '../../helpers/helpers';
-import { registerAdm } from '../../API/requests';
+import { registerAdm, getUsers } from '../../API/requests';
+import UserCard from '../../components/UserCard/UserCard';
 
 function AdmPage() {
   const [infos, setInfo] = useState({
@@ -9,12 +10,22 @@ function AdmPage() {
     password: null,
     role: 'customer',
   });
+  const [usersData, setUsers] = useState([]);
 
   const [message, setMessage] = useState('');
 
   const handleChange = ({ target }) => {
     setInfo({ ...infos, role: target.value });
   };
+
+  const getUsersData = async () => {
+    const users = await getUsers();
+    setUsers(users);
+  };
+
+  useEffect(() => {
+    getUsersData();
+  }, [usersData]);
 
   const TWELVE = 12;
 
@@ -86,6 +97,24 @@ function AdmPage() {
           ? showMessage(message, 'admin_manage__element-invalid-register')
           : null }
       </form>
+      <h2>Lista de usuários</h2>
+      <thead />
+      <tr>
+        <th>Item</th>
+        <th>E-mail</th>
+        <th>Tipo</th>
+        <th>Excluir</th>
+      </tr>
+      <div>
+        {
+          usersData.map((user) => (
+            <UserCard
+              key={ `${user.name}-${user.id}` }
+              usersData={ user }
+            />
+          ))
+        }
+      </div>
     </div>
   );
 }
