@@ -20,6 +20,7 @@ function CartPage({ history }) {
         {
           products.map((product, index) => (
             <OrderCard
+              location={ history.location.pathname }
               orderInfo={ { ...product, index } }
               userRole="customer"
               page="checkout"
@@ -43,6 +44,9 @@ function CartPage({ history }) {
 
 CartPage.propTypes = {
   history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+    }).isRequired,
     push: PropTypes.func,
   }).isRequired,
 };

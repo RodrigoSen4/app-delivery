@@ -89,6 +89,19 @@ const getSales = async () => {
   }
 };
 
+const getUsers = async () => {
+  const users = await service.get('/users');
+  return users.data;
+};
+
+const delUser = async (id) => {
+  await service.delete('/delete', {
+    headers: {
+      id,
+    },
+  });
+};
+
 const getSalesById = async (id) => {
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -139,6 +152,8 @@ export {
   getSellers,
   registerAdm,
   getSales,
+  getUsers,
+  delUser,
   getSalesById,
   postSale,
   updateSale,

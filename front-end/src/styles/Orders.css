@@ -17,6 +17,12 @@
   cursor: pointer;
   display: flex;
   margin-bottom: 25px;
+  transition: 200ms;
+}
+
+.order-item:hover {
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.719);
+  transform: scale(1.03);
 }
 
 .container-info {

@@ -6,6 +6,7 @@ import OrderCard from '../../components/OrderCard/OrderCard';
 import DeliveredStatusBtn from '../../components/UpdateStatusBtns/DeliveredStatusBtn';
 import PreparingStatusBtn from '../../components/UpdateStatusBtns/PreparingStatusBtn';
 import DispatchStatusBtn from '../../components/UpdateStatusBtns/DispatchStatusBtn';
+import '../../styles/DetailsOrder.css';
 
 const TEN = 10;
 
@@ -97,6 +98,11 @@ function DetailsOrderPage({ match: { params: { id }, path }, userRole: user }) {
 }
 
 DetailsOrderPage.propTypes = {
+  history: propTypes.shape({
+    location: propTypes.shape({
+      pathname: propTypes.string,
+    }),
+  }).isRequired,
   match: propTypes.shape({
     params: propTypes.shape({
       id: propTypes.string,
