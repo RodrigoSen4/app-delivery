@@ -1,0 +1,75 @@
+.container-orders-items {
+  align-items: center;
+  display: grid;
+  gap: 30px;
+  grid-template-areas: 'div div div'
+    'div div div';
+  margin-bottom: 70px;
+  margin-top: 50px;
+  padding: 50px;
+}
+
+.order-item {
+  background-color: rgb(231, 231, 231);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.445);
+  cursor: pointer;
+  display: flex;
+  margin-bottom: 25px;
+  transition: 200ms;
+}
+
+.order-item:hover {
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.719);
+  transform: scale(1.03);
+}
+
+.container-info {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 40px;
+  width: 100%;
+}
+
+.container-info p {
+  font-family: Arial , Helvetica , sans-serif;
+  font-size: 18px;
+  width: 30%;
+}
+
+.Pendente {
+  background-color: #d4c63c;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.Entregue {
+  background-color: #3bd5b0;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.Preparando {
+  background-color: #87d53c;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.date-price {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+}
+
+.date-price p {
+  font-weight: 700;
+  width: 100%;
+}
+
+.date-price p:first-child {
+  margin-bottom: 10px;
+}

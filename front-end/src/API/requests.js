@@ -85,12 +85,12 @@ const postSale = async (sale) => {
   return id;
 };
 
-const getSales = async (id = '') => {
+const getSales = async () => {
   const user = JSON.parse(localStorage.getItem('user'));
 
   try {
     const { data } = await service.get(
-      `/sales/${id}`,
+      '/sales/',
       { headers: { Authorization: user.token } },
     );
 
@@ -113,6 +113,21 @@ const deleUser = async (id) => {
   });
 };
 
+const getSalesById = async (id) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  try {
+    const resp = await service.get(
+      `/sales/${id}`,
+      { headers: { Authorization: user.token } },
+    );
+
+    return resp.data;
+  } catch (err) {
+    return { payload: err.response.data, status: false };
+  }
+};
+
 export {
   doLogin,
   registerUser,
@@ -123,4 +138,5 @@ export {
   getSales,
   getUsers,
   deleUser,
+  getSalesById,
 };

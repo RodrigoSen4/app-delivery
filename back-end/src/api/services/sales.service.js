@@ -1,4 +1,4 @@
-const { Sale, SaleProduct } = require('../../database/models');
+const { Sale, Product, SaleProduct, User } = require('../../database/models');
 
 async function createSale(userId, products, saleInfo) {
   const obj = { userId, ...saleInfo, saleDate: new Date(), status: 'Pendente' };
@@ -23,7 +23,26 @@ async function getOrderById(id, role) {
   return orders;
 }
 
+const getSaleById = async (role, userId, id) => {
+  const data = await Sale.findOne({
+    where: role === 'customer' ? { userId, id } : { sellerId: userId, id },
+    include: [
+      {
+        model: Product,
+        as: 'products',
+        attributes: { exclude: ['id'] },
+      },
+      {
+        model: User,
+        as: 'seller',
+      },
+    ],
+  });
+
+  return data;
+};
+
 async function updateStatus(id, status) {
   await Sale.update({ status }, { where: { id } });
 }
-module.exports = { createSale, getOrderById, updateStatus };
+module.exports = { createSale, getOrderById, updateStatus, getSaleById };
