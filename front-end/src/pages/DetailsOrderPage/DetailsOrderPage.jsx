@@ -1,14 +1,14 @@
 import propTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-
 import { getSalesById } from '../../API/requests';
 import NavBar from '../../components/NavBar/NavBar';
 import OrderCard from '../../components/OrderCard/OrderCard';
+import '../../styles/DetailsOrder.css';
 
 const statusTest = 'customer_order_details__element-order-details-label-delivery-status';
 const TEN = 10;
 
-function DetailsOrderPage({ match: { params: { id } } }) {
+function DetailsOrderPage({ history, match: { params: { id } } }) {
   const [order, setOrder] = useState({});
 
   const orderDate = order.saleDate && order.saleDate.slice(0, TEN).split('-');
@@ -28,23 +28,30 @@ function DetailsOrderPage({ match: { params: { id } } }) {
       <NavBar />
       <header>
         <p data-testid="customer_order_details__element-order-details-label-order-id">
-          {`Pedido: ${order.id}`}
+          <span>Pedido:</span>
+          <hr />
+          <span>{ order.id }</span>
         </p>
         <p data-testid="customer_order_details__element-order-details-label-seller-name">
-          {`Nome do Vendedor: ${order.seller ? order.seller.name : 'Sem nome'}`}
+          <span>Nome do Vendedor:</span>
+          <hr />
+          <span>{ order.seller ? order.seller.name : 'Sem nome' }</span>
         </p>
         <p data-testid="customer_order_details__element-order-details-label-order-date">
-          Data do pedido:
-          {' '}
-          {orderDate && `${orderDate[2]}/${orderDate[1]}/${orderDate[0]}`}
+          <span>Data do pedido:</span>
+          <hr />
+          <span>{orderDate && `${orderDate[2]}/${orderDate[1]}/${orderDate[0]}`}</span>
         </p>
         <p
           data-testid={ statusTest }
         >
-          STATUS:
-          {' '}
-          { order.status }
+          <span>STATUS:</span>
+          <hr />
+          <span className={ order.status }>{ order.status }</span>
         </p>
+        <h3 data-testid="customer_order_details__element-order-total-price">
+          { order.totalPrice && order.totalPrice.toString().replace('.', ',')}
+        </h3>
         <button
           disabled={ order.status !== 'Preparando' }
           type="button"
@@ -53,28 +60,35 @@ function DetailsOrderPage({ match: { params: { id } } }) {
           MARCAR COMO ENTREGUE
         </button>
       </header>
-      {
-        order.products && order.products.map(({ name, price, SaleProduct }, index) => (
-          <OrderCard
-            key={ `${SaleProduct.saleId}-${name}` }
-            orderInfo={ {
-              index,
-              name,
-              price,
-              quantity: SaleProduct.quantity,
-            } }
-            page="order_details"
-          />
-        ))
-      }
-      <h3 data-testid="customer_order_details__element-order-total-price">
-        { order.totalPrice && order.totalPrice.toString().replace('.', ',')}
-      </h3>
+      <div className="container-details-orders">
+        {
+          order.products && order.products
+            .map(({ name, price, SaleProduct, urlImage }, index) => (
+              <OrderCard
+                location={ history.location.pathname }
+                key={ `${SaleProduct.saleId}-${name}` }
+                orderInfo={ {
+                  index,
+                  name,
+                  price,
+                  quantity: SaleProduct.quantity,
+                  urlImage,
+                } }
+                page="order_details"
+              />
+            ))
+        }
+      </div>
     </div>
   );
 }
 
 DetailsOrderPage.propTypes = {
+  history: propTypes.shape({
+    location: propTypes.shape({
+      pathname: propTypes.string,
+    }),
+  }).isRequired,
   match: propTypes.shape({
     params: propTypes.shape({
       id: propTypes.string,

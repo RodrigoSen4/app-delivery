@@ -4,9 +4,11 @@ import ShopContext from '../../context/ShopContext';
 import trash from '../../images/trash.png';
 import opentrash from '../../images/opentrash.png';
 
-function OrderCard({ orderInfo, page }) {
+function OrderCard({ orderInfo, page, location }) {
   const { products, setProducts } = useContext(ShopContext);
   const [trashButton, setTrashButton] = useState(trash);
+
+  console.log(location);
 
   return (
     <div className="order-card">
@@ -45,6 +47,7 @@ function OrderCard({ orderInfo, page }) {
         { (orderInfo.price * orderInfo.quantity).toFixed(2).toString().replace('.', ',') }
       </p>
       <button
+        hidden={ location.includes('/customer/orders') }
         data-testid={ `customer_${page}__element-order-table-remove-${orderInfo.index}` }
         onMouseMove={ () => setTrashButton(opentrash) }
         onMouseLeave={ () => setTrashButton(trash) }
@@ -70,6 +73,7 @@ OrderCard.propTypes = {
     urlImage: PropTypes.string,
   }).isRequired,
   page: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
 };
 
 export default OrderCard;
