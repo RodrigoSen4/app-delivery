@@ -105,7 +105,7 @@ const getUsers = async () => {
   return users.data;
 };
 
-const deleUser = async (id) => {
+const delUser = async (id) => {
   await service.delete('/delete', {
     headers: {
       id,
@@ -137,6 +137,6 @@ export {
   registerAdm,
   getSales,
   getUsers,
-  deleUser,
+  delUser,
   getSalesById,
 };
