@@ -22,6 +22,7 @@ function CartPage({ history }) {
             <OrderCard
               location={ history.location.pathname }
               orderInfo={ { ...product, index } }
+              userRole="customer"
               page="checkout"
               key={ product.name }
             />

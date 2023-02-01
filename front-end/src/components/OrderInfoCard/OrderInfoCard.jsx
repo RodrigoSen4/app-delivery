@@ -7,8 +7,6 @@ function OrderInfoCard({ orderInfo, history, userRole }) {
   const date = orderInfo.saleDate.slice(0, TEN).split('-');
   const formatedDate = `${date[2]}/${date[1]}/${date[0]}`;
 
-  console.log(orderInfo);
-
   return (
     <button
       className="order-item"

@@ -7,18 +7,25 @@ function NavBar({ location }) {
   const user = localStorage.getItem('user');
   const name = user ? JSON.parse(user).name : 'Zé';
 
+  const customerProducts = '/customer';
+
   return (
     <nav>
-      <Link
-        className={ location === '/customer/products' ? 'selected' : null }
-        to="/customer/products"
-        data-testid="customer_products__element-navbar-link-products"
-      >
-        Produtos
-      </Link>
+      {
+        location.includes('/seller/orders')
+        || (
+          <Link
+            className={ location === customerProducts ? 'selected' : null }
+            to="/customer/products"
+            data-testid="customer_products__element-navbar-link-products"
+          >
+            Produtos
+          </Link>
+        )
+      }
       <Link
         className={ location === '/customer/orders' ? 'selected' : null }
-        to="/customer/orders"
+        to={ location.includes(customerProducts) ? '/customer/orders' : '/seller/orders' }
         data-testid="customer_products__element-navbar-link-orders"
       >
         Meus Pedidos
@@ -40,8 +47,12 @@ function NavBar({ location }) {
   );
 }
 
+NavBar.defaultProps = {
+  location: '',
+};
+
 NavBar.propTypes = {
-  location: PropTypes.string.isRequired,
+  location: PropTypes.string,
 };
 
 export default NavBar;

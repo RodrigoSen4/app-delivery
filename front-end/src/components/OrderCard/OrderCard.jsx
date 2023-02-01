@@ -1,72 +1,38 @@
 import PropTypes from 'prop-types';
-import { useContext, useState } from 'react';
-import ShopContext from '../../context/ShopContext';
-import trash from '../../images/trash.png';
-import opentrash from '../../images/opentrash.png';
+import RemoveOrderButton from './RemoveOrderButton';
 
-function OrderCard({ orderInfo, page, location }) {
-  const { products, setProducts } = useContext(ShopContext);
-  const [trashButton, setTrashButton] = useState(trash);
-
-  console.log(location);
+function OrderCard({ orderInfo, page, userRole }) {
+  const { price, quantity, index, name, urlImage } = orderInfo;
 
   return (
     <div className="order-card">
-      <img
-        className={ `product-img ${orderInfo.name === 'Skol Lata 250ml'
-          ? 'skol'
-          : ''
-        }` }
-        src={ orderInfo.urlImage }
-        alt=""
-      />
+      <img className="product-img" src={ urlImage } alt="" />
       <p
-        data-testid={
-          `customer_${page}__element-order-table-item-number-${orderInfo.index}`
-        }
+        data-testid={ `${userRole}_${page}__element-order-table-item-number-${index}` }
       >
-        { orderInfo.index + 1 }
+        { index + 1 }
       </p>
       <p
-        data-testid={ `customer_${page}__element-order-table-name-${orderInfo.index}` }
+        data-testid={ `${userRole}_${page}__element-order-table-name-${index}` }
       >
-        { orderInfo.name }
+        { name }
       </p>
       <p
-        data-testid={
-          `customer_${page}__element-order-table-quantity-${orderInfo.index}`
-        }
+        data-testid={ `${userRole}_${page}__element-order-table-quantity-${index}` }
       >
-        { orderInfo.quantity }
+        { quantity }
       </p>
       <p
-        data-testid={
-          `customer_${page}__element-order-table-unit-price-${orderInfo.index}`
-        }
+        data-testid={ `${userRole}_${page}__element-order-table-unit-price-${index}` }
       >
-        { orderInfo.price.toString().replace('.', ',') }
+        { price.toString().replace('.', ',') }
       </p>
       <p
-        data-testid={
-          `customer_${page}__element-order-table-sub-total-${orderInfo.index}`
-        }
+        data-testid={ `${userRole}_${page}__element-order-table-sub-total-${index}` }
       >
-        { (orderInfo.price * orderInfo.quantity).toFixed(2).toString().replace('.', ',') }
+        { (price * quantity).toFixed(2).toString().replace('.', ',') }
       </p>
-      <button
-        hidden={ location.includes('/customer/orders') }
-        data-testid={ `customer_${page}__element-order-table-remove-${orderInfo.index}` }
-        onMouseMove={ () => setTrashButton(opentrash) }
-        onMouseLeave={ () => setTrashButton(trash) }
-        type="button"
-        onClick={ () => {
-          const updatedProducts = products
-            .filter((product) => product.name !== orderInfo.name);
-          setProducts(updatedProducts);
-        } }
-      >
-        <img width="47" src={ trashButton } alt="" />
-      </button>
+      { page === 'checkout' && <RemoveOrderButton orderInfo={ orderInfo } /> }
     </div>
   );
 }
@@ -80,7 +46,7 @@ OrderCard.propTypes = {
     urlImage: PropTypes.string,
   }).isRequired,
   page: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
+  userRole: PropTypes.string.isRequired,
 };
 
 export default OrderCard;

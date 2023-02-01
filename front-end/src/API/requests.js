@@ -50,7 +50,6 @@ const getAllProducts = async () => {
       Authorization: user.token,
     },
   });
-  console.log(data);
   return data;
 };
 
@@ -73,16 +72,6 @@ const registerAdm = async (userInfo, admToken) => {
   } catch (err) {
     return { erro: 'erro', status: false };
   }
-};
-
-const postSale = async (sale) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-
-  const { data: { id } } = await service.post('/sales', sale, {
-    headers: { Authorization: user.token },
-  });
-
-  return id;
 };
 
 const getSales = async () => {
@@ -128,15 +117,42 @@ const getSalesById = async (id) => {
   }
 };
 
+const postSale = async (sale) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const { data: { id } } = await service.post('/sales', sale, {
+    headers: { Authorization: user.token },
+  });
+
+  return id;
+};
+
+const updateSale = async (id, status) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  try {
+    await service.put(
+      `/sales/${id}`,
+      { status },
+      { headers: { Authorization: user.token } },
+    );
+
+    return { status: true };
+  } catch (err) {
+    return { status: false };
+  }
+};
+
 export {
   doLogin,
   registerUser,
   getAllProducts,
   getSellers,
-  postSale,
   registerAdm,
   getSales,
   getUsers,
   delUser,
   getSalesById,
+  postSale,
+  updateSale,
 };

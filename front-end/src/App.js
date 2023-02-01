@@ -27,8 +27,22 @@ function App() {
         path="/seller/orders"
         render={ (props) => <OrdersPage { ...props } userRole="seller" /> }
       />
-      <Route exact path="/customer/orders/:id" component={ DetailsOrderPage } />
-      <Route exact path="/seller/orders/:id" component={ DetailsOrderPage } />
+      <Route
+        exact
+        path="/customer/orders/:id"
+        render={ (props) => (
+          <DetailsOrderPage { ...props } page="order_details" userRole="customer" />
+        ) }
+      />
+      <Route
+        exact
+        path="/seller/orders/:id"
+        render={ (props) => (
+          <DetailsOrderPage { ...props } page="order_details" userRole="seller" />
+        ) }
+      />
+      <Route path="/customer/orders/:id" component={ DetailsOrderPage } />
+      <Route path="/seller/orders/:id" component={ DetailsOrderPage } />
       <Route>
         <Redirect to="/login" />
       </Route>

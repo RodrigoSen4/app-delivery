@@ -4,12 +4,12 @@ const { tokenValidation } = require('../middlewares/validateToken');
 
 const saleRouter = Router();
 
-saleRouter.post('/sales', tokenValidation, SaleController.createSale);
-
 saleRouter.get('/sales', tokenValidation, SaleController.getOrder);
 
 saleRouter.get('/sales/:id', tokenValidation, SaleController.getSaleById);
 
-saleRouter.post('/sales/:id', tokenValidation, SaleController.updateStatusSales);
+saleRouter.post('/sales', tokenValidation, SaleController.createSale);
+
+saleRouter.put('/sales/:id', tokenValidation, SaleController.updateStatusSales);
 
 module.exports = saleRouter;
