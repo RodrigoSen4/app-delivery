@@ -1,49 +1,52 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import trash from '../../images/trash.png';
+import opentrash from '../../images/opentrash.png';
 
 function UserCard({ usersData, deleteUser }) {
+  const [trashButton, setTrashButton] = useState(trash);
+
   return (
-    <div>
-      <table>
-        <tbody>
-          <tr>
-            <td
-              data-testid={
-                `admin_manage__element-user-table-item-number-${usersData.id}`
-              }
-            >
-              {usersData.id}
+    <tr>
+      <td
+        data-testid={
+          `admin_manage__element-user-table-item-number-${usersData.id}`
+        }
+      >
+        {usersData.id}
 
-            </td>
-            <td
-              data-testid="admin_manage__element-user-table-name-"
-            >
-              {usersData.name}
+      </td>
+      <td
+        data-testid="admin_manage__element-user-table-name-"
+      >
+        {usersData.name}
 
-            </td>
-            <td
-              data-testid={ `admin_manage__element-user-table-email-${usersData.id}` }
-            >
-              {usersData.email}
+      </td>
+      <td
+        data-testid={ `admin_manage__element-user-table-email-${usersData.id}` }
+      >
+        {usersData.email}
 
-            </td>
-            <td
-              data-testid={ `admin_manage__element-user-table-role-${usersData.id}` }
-            >
-              {usersData.role}
+      </td>
+      <td
+        data-testid={ `admin_manage__element-user-table-role-${usersData.id}` }
+      >
+        {usersData.role}
 
-            </td>
-            <button
-              type="button"
-              data-testid={ `admin_manage__element-user-table-remove-${usersData.id}` }
-              onClick={ () => deleteUser(usersData.id) }
-            >
-              Excluir
-            </button>
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
+      </td>
+      <td>
+        <button
+          onMouseMove={ () => setTrashButton(opentrash) }
+          onMouseLeave={ () => setTrashButton(trash) }
+          className="button-remove-user"
+          type="button"
+          data-testid={ `admin_manage__element-user-table-remove-${usersData.id}` }
+          onClick={ () => deleteUser(usersData.id) }
+        >
+          <img width="25" src={ trashButton } alt="" />
+        </button>
+      </td>
+    </tr>
   );
 }
 

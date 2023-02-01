@@ -1,0 +1,152 @@
+.container-form-list {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-form-list h1 {
+  font-family: Jack , Arial , sans-serif;
+  font-size: 50px;
+  font-weight: 100;
+  margin-top: 30px;
+}
+
+form {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  margin-top: 50px;
+  width: 50%;
+}
+
+.container-name-email {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-around;
+  width: 45%;
+}
+
+.container-name-email label input {
+  background-color: rgb(224, 224, 224);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+
+.container-pass-select label input {
+  background-color: rgb(224, 224, 224);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+
+.container-name-email label input:focus {
+  outline: none;
+}
+
+.container-pass-select {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-around;
+  width: 45%;
+}
+
+.container-pass-select label input:focus {
+  outline: none;
+}
+
+.container-pass-select select {
+  background-color: rgb(224, 224, 224);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+
+.container-pass-select select:focus {
+  outline: none;
+}
+
+.register-button {
+  background-color: #ffa652;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  margin-bottom: 40px;
+  padding: 10px;
+  transition: 200ms;
+}
+
+.register-button:hover {
+  transform: scale(1.05);
+}
+
+.register-button:disabled {
+  background-color: #ffc690;
+  cursor: default;
+}
+
+.register-button:disabled:hover {
+  transform: none;
+}
+
+.container-form-list h2 {
+  font-family: Jack , Arial , sans-serif;
+  font-size: 40px;
+  font-weight: 100;
+  margin-bottom: 30px;
+}
+
+.container-form-list table {
+  border-collapse: collapse;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgb(151, 151, 151);
+  font-family: Arial , Helvetica , sans-serif;
+  font-size: 18px;
+  overflow: hidden;
+}
+
+.container-form-list thead tr {
+  background-color: #ffa652;
+  text-align: left;
+}
+
+.container-form-list thead th, .container-form-list tbody td {
+  padding: 12px 15px;
+}
+
+.container-form-list tbody tr {
+  border-bottom: 2px solid #d4d4d4;
+}
+
+.container-form-list tbody td:last-child {
+  display: flex;
+  justify-content: center;
+}
+
+.container-form-list tbody tr:nth-of-type( even ) {
+  background-color: #e0e0e0;
+  color: rgb(117, 117, 117);
+}
+
+.container-form-list tbody tr:last-of-type {
+  border-bottom: 3px solid #ffa652;
+}
+
+.button-remove-user {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+}
