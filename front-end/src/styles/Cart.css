@@ -22,6 +22,12 @@
   width: 120px;
 }
 
+.skol {
+  margin-left: 25px;
+  margin-right: 25px;
+  width: 70px;
+}
+
 .order-card p {
   font-family: Arial , Helvetica , sans-serif;
   font-size: 25px;
