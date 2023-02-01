@@ -1,6 +1,6 @@
 .container-cards {
   display: grid;
-  gap: 30px;
+  gap: 25px;
   grid-template-areas: 'div div div div div'
     'div div div div div';
   margin-top: 20px;
@@ -32,9 +32,7 @@
 }
 
 .button-cart:hover {
-  background-color: rgb(221, 221, 221);
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.603);
-  transform: scale(1.03);
+  background-color: rgb(212, 212, 212);
 }
 
 .button-cart:disabled {
@@ -48,8 +46,4 @@
 
 .button-cart:disabled:hover {
   background-color: rgb(241, 241, 241);
-  box-shadow: none;
-  color: rgba(0, 0, 0, 0.336);
-  cursor: default;
-  transform: none;
 }

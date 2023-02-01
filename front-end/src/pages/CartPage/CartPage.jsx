@@ -19,7 +19,12 @@ function CartPage({ history }) {
       <div className="container-orders">
         {
           products.map((product, index) => (
-            <OrderCard orderInfo={ { ...product, index } } key={ product.name } />
+            <OrderCard
+              location={ history.location.pathname }
+              orderInfo={ { ...product, index } }
+              page="checkout"
+              key={ product.name }
+            />
           ))
         }
       </div>
@@ -38,6 +43,9 @@ function CartPage({ history }) {
 
 CartPage.propTypes = {
   history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+    }).isRequired,
     push: PropTypes.func,
   }).isRequired,
 };

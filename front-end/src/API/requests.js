@@ -85,12 +85,12 @@ const postSale = async (sale) => {
   return id;
 };
 
-const getSales = async (id = '') => {
+const getSales = async () => {
   const user = JSON.parse(localStorage.getItem('user'));
 
   try {
     const { data } = await service.get(
-      `/sales/${id}`,
+      '/sales/',
       { headers: { Authorization: user.token } },
     );
 
@@ -99,6 +99,7 @@ const getSales = async (id = '') => {
     return { payload: err.response.data, status: false };
   }
 };
+
 
 const getUsers = async () => {
   const users = await service.get('/users');
@@ -111,6 +112,21 @@ const delUser = async (id) => {
       id,
     },
   });
+
+const getSalesById = async (id) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  try {
+    const resp = await service.get(
+      `/sales/${id}`,
+      { headers: { Authorization: user.token } },
+    );
+
+    return resp.data;
+  } catch (err) {
+    return { payload: err.response.data, status: false };
+  }
+
 };
 
 export {
@@ -123,4 +139,5 @@ export {
   getSales,
   getUsers,
   delUser,
+  getSalesById,
 };

@@ -1,54 +1,99 @@
-/* import PropTypes from 'prop-types'; */
-/* import { useState, useEffect } from 'react';
-import { getSales } from '../../API/requests'; */
+import propTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import { getSalesById } from '../../API/requests';
 import NavBar from '../../components/NavBar/NavBar';
+import OrderCard from '../../components/OrderCard/OrderCard';
+import '../../styles/DetailsOrder.css';
 
-function DetailsOrderPage(/* { match: { params: { id } } } */) {
-  /* const [order, setOrder] = useState({});
+const statusTest = 'customer_order_details__element-order-details-label-delivery-status';
+const TEN = 10;
+
+function DetailsOrderPage({ history, match: { params: { id } } }) {
+  const [order, setOrder] = useState({});
+
+  const orderDate = order.saleDate && order.saleDate.slice(0, TEN).split('-');
 
   const getOrderFromDB = async () => {
-    const orderFromDB = await getSales(id);
+    const orderFromDB = await getSalesById(Number(id));
     setOrder(orderFromDB);
   };
 
-  useEffect(() => { getOrderFromDB(); }, []); */
+  useEffect(() => {
+    getOrderFromDB();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
       <NavBar />
       <header>
         <p data-testid="customer_order_details__element-order-details-label-order-id">
-          Pedido:
+          <span>Pedido:</span>
+          <hr />
+          <span>{ order.id }</span>
         </p>
         <p data-testid="customer_order_details__element-order-details-label-seller-name">
-          Nome do vendedor:
+          <span>Nome do Vendedor:</span>
+          <hr />
+          <span>{ order.seller ? order.seller.name : 'Sem nome' }</span>
         </p>
         <p data-testid="customer_order_details__element-order-details-label-order-date">
-          Data do pedido:
+          <span>Data do pedido:</span>
+          <hr />
+          <span>{orderDate && `${orderDate[2]}/${orderDate[1]}/${orderDate[0]}`}</span>
         </p>
         <p
-          data-testid="customer_order_details__
-          element-order-details-label-delivery-status<index>"
+          data-testid={ statusTest }
         >
-          Status:
+          <span>STATUS:</span>
+          <hr />
+          <span className={ order.status }>{ order.status }</span>
         </p>
-        <button type="button" data-testid="customer_order_details__button-delivery-check">
-          Entregue
+        <h3 data-testid="customer_order_details__element-order-total-price">
+          { order.totalPrice && order.totalPrice.toString().replace('.', ',')}
+        </h3>
+        <button
+          disabled={ order.status !== 'Preparando' }
+          type="button"
+          data-testid="customer_order_details__button-delivery-check"
+        >
+          MARCAR COMO ENTREGUE
         </button>
       </header>
-      <h3 data-testid="customer_order_details__element-order-total-price">
-        Total:
-      </h3>
+      <div className="container-details-orders">
+        {
+          order.products && order.products
+            .map(({ name, price, SaleProduct, urlImage }, index) => (
+              <OrderCard
+                location={ history.location.pathname }
+                key={ `${SaleProduct.saleId}-${name}` }
+                orderInfo={ {
+                  index,
+                  name,
+                  price,
+                  quantity: SaleProduct.quantity,
+                  urlImage,
+                } }
+                page="order_details"
+              />
+            ))
+        }
+      </div>
     </div>
   );
 }
 
-/* DetailsOrderPage.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.func,
+DetailsOrderPage.propTypes = {
+  history: propTypes.shape({
+    location: propTypes.shape({
+      pathname: propTypes.string,
     }),
   }).isRequired,
-}; */
+  match: propTypes.shape({
+    params: propTypes.shape({
+      id: propTypes.string,
+    }),
+  }).isRequired,
+};
 
 export default DetailsOrderPage;
