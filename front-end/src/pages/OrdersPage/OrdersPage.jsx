@@ -18,6 +18,7 @@ function OrdersPage({ history, userRole }) {
 
     if (!userInfo || !JSON.parse(userInfo).token) return history.push('/login');
     getOrdersFromDB();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

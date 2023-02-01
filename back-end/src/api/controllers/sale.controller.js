@@ -29,7 +29,7 @@ const getSaleById = async (req, res) => {
 };
 
 const updateStatusSales = async (req, res) => {
-  const { status } = req.query;
+  const { status } = req.body;
   const { id } = req.params;
 
   await SaleService.updateStatus(id, status);

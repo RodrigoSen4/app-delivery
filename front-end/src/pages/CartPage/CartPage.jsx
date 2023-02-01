@@ -21,6 +21,7 @@ function CartPage({ history }) {
           products.map((product, index) => (
             <OrderCard
               orderInfo={ { ...product, index } }
+              userRole="customer"
               page="checkout"
               key={ product.name }
             />
