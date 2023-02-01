@@ -130,8 +130,6 @@ const postSale = async (sale) => {
 const updateSale = async (id, status) => {
   const user = JSON.parse(localStorage.getItem('user'));
 
-  console.log('opaaa')
-
   try {
     await service.put(
       `/sales/${id}`,
