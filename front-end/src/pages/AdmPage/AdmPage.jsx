@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { checkUserInfo, showMessage } from '../../helpers/helpers';
-import { registerAdm, getUsers } from '../../API/requests';
+import { registerAdm, getUsers, delUser } from '../../API/requests';
 import UserCard from '../../components/UserCard/UserCard';
 
 function AdmPage() {
@@ -27,6 +27,9 @@ function AdmPage() {
     getUsersData();
   }, [usersData]);
 
+  const deleteUser = async (id) => {
+    await delUser(id);
+  };
   const TWELVE = 12;
 
   const register = async () => {
@@ -111,6 +114,7 @@ function AdmPage() {
             <UserCard
               key={ `${user.name}-${user.id}` }
               usersData={ user }
+              deleteUser={ deleteUser }
             />
           ))
         }

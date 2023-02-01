@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function UserCard({ usersData }) {
+function UserCard({ usersData, deleteUser }) {
   return (
     <div>
       <table>
@@ -35,6 +35,7 @@ function UserCard({ usersData }) {
             <button
               type="button"
               data-testid={ `admin_manage__element-user-table-remove-${usersData.id}` }
+              onClick={ () => deleteUser(usersData.id) }
             >
               Excluir
             </button>
@@ -52,7 +53,9 @@ UserCard.propTypes = {
     name: PropTypes.string,
     email: PropTypes.string,
     role: PropTypes.string,
+    delUser: PropTypes.func,
   }).isRequired,
+  deleteUser: PropTypes.func.isRequired,
 };
 
 export default UserCard;

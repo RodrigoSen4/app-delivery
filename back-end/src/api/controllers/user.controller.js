@@ -1,6 +1,12 @@
 const md5 = require('md5');
 const generateJWT = require('../auth/generateJWT');
-const { create, getSellers, createNewUser, getUserAdm } = require('../services/user.service');
+const { 
+  create, 
+  getSellers, 
+  createNewUser, 
+  getUserAdm, 
+  deleteUser,
+ } = require('../services/user.service');
 
 const getAllSellers = async (_req, res) => {
   const sellers = await getSellers();
@@ -34,9 +40,16 @@ const getUsersAdm = async (req, res) => {
   return res.status(200).json(users);
 };
 
+const delUser = async (req, res) => {
+  const { id } = req.headers;
+  await deleteUser(id);
+  return res.status(200).json('Deleted');
+};
+
 module.exports = {
   createUser,
   getAllSellers,
   adminCreateNewUser,
   getUsersAdm,
+  delUser,
 };
