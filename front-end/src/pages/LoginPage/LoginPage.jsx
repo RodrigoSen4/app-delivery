@@ -43,10 +43,8 @@ function LoginPage(props) {
     history.push('/customer/products');
   };
 
-  useEffect(() => {
-    goToProducts();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useEffect(() => goToProducts(), []);
 
   return (
     <div className="container-login">

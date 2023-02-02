@@ -1,12 +1,22 @@
 class FakeLocalStorage {
-  storage = {};
+  constructor() {
+    this.store = {};
+  }
 
-  setItem(key, item) {
-    this.storage = { ...this.storage, [key]: item };
+  clear() {
+    this.store = {};
   }
 
   getItem(key) {
-    return this.storage[key];
+    return this.store[key] || null;
+  }
+
+  setItem(key, value) {
+    this.store[key] = String(value);
+  }
+
+  removeItem(key) {
+    delete this.store[key];
   }
 }
 

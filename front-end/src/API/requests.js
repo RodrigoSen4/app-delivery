@@ -144,6 +144,7 @@ const updateSale = async (id, status) => {
 };
 
 export {
+  service,
   doLogin,
   registerUser,
   getAllProducts,
