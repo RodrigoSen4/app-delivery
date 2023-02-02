@@ -1,63 +1,79 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import ShopContext from '../../context/ShopContext';
+import '../../styles/ProductCard.css';
 
 const MENOSUM = -1;
 
-function ProductCard({ props }) {
-  const { id, name, price, urlImage } = props;
+function ProductCard(props) {
+  const { productInfo } = props;
   const { products, setProducts } = useContext(ShopContext);
 
-  const item = products.find((item2) => item2.name === name) || 0;
+  const item = products.find((item2) => item2.name === productInfo.name) || 0;
 
   return (
-    <div>
-      <p data-testid={ `customer_products__element-card-price-${id}` }>
-        { price.replace('.', ',') }
-      </p>
+    <div className="product-card">
       <img
-        data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ urlImage }
-        alt={ name }
+        data-testid={ `customer_products__img-card-bg-image-${productInfo.id}` }
+        src={ productInfo.urlImage }
+        alt={ productInfo.name }
         width="200px"
       />
-      <p data-testid={ `customer_products__element-card-title-${id}` }>{ name }</p>
-      <div>
+      <p
+        className="product-name"
+        data-testid={ `customer_products__element-card-title-${productInfo.id}` }
+      >
+        { productInfo.name }
+      </p>
+      <p
+        className="product-price"
+        data-testid={ `customer_products__element-card-price-${productInfo.id}` }
+      >
+        { productInfo.price.replace('.', ',') }
+      </p>
+      <div className="buttons-add-remove">
         <button
-          data-testid={ `customer_products__button-card-add-item-${id}` }
+          data-testid={ `customer_products__button-card-add-item-${productInfo.id}` }
           type="button"
           onClick={ () => {
-            const index = products.findIndex((product) => product.name === name);
-            console.log(index);
+            const index = products
+              .findIndex((product) => product.name === productInfo.name);
             if (index !== MENOSUM) {
               const newProducts = [...products];
               newProducts[index].quantity += 1;
               return setProducts(newProducts);
             }
-            setProducts((prev) => ([...prev, { id, ...props, quantity: 1 }]));
+            setProducts((prev) => ([...prev, {
+              id: productInfo.id, ...productInfo, quantity: 1 }]));
           } }
         >
           +
         </button>
         <input
-          data-testid={ `customer_products__input-card-quantity-${id}` }
+          data-testid={ `customer_products__input-card-quantity-${productInfo.id}` }
           type="number"
           onChange={ ({ target: { value } }) => {
-            const index = products.findIndex((product) => product.name === name);
+            const index = products
+              .findIndex((product) => product.name === productInfo.name);
             if (index !== MENOSUM && Number(value) >= 0) {
               const newProducts = [...products];
               newProducts[index].quantity = Number(value);
               return setProducts(newProducts);
             }
-            setProducts((prev) => ([...prev, { id, ...props, quantity: Number(value) }]));
+            setProducts((prev) => ([...prev, {
+              id: productInfo.id,
+              ...productInfo,
+              quantity: Number(value),
+            }]));
           } }
           value={ item.quantity || 0 }
         />
         <button
-          data-testid={ `customer_products__button-card-rm-item-${id}` }
+          data-testid={ `customer_products__button-card-rm-item-${productInfo.id}` }
           type="button"
           onClick={ () => {
-            const index = products.findIndex((product) => product.name === name);
+            const index = products
+              .findIndex((product) => product.name === productInfo.name);
             if (index !== MENOSUM && products[index].quantity > 0) {
               const newProducts = [...products];
               newProducts[index].quantity -= 1;
@@ -73,11 +89,12 @@ function ProductCard({ props }) {
 }
 
 ProductCard.propTypes = {
-  props: PropTypes.objectOf().isRequired,
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  urlImage: PropTypes.string.isRequired,
+  productInfo: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    price: PropTypes.string,
+    urlImage: PropTypes.string,
+  }).isRequired,
 };
 
 export default ProductCard;

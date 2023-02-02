@@ -4,6 +4,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import ShopContext from '../../context/ShopContext';
 import OrderCard from '../../components/OrderCard/OrderCard';
 import OrderForm from '../../components/OrderForm/OrderForm';
+import '../../styles/Cart.css';
 
 function CartPage({ history }) {
   const { products } = useContext(ShopContext);
@@ -15,15 +16,21 @@ function CartPage({ history }) {
   return (
     <section>
       <NavBar />
-      <div>
+      <div className="container-orders">
         {
           products.map((product, index) => (
-            <OrderCard props={ { ...product, index } } key={ product.name } />
+            <OrderCard
+              location={ history.location.pathname }
+              orderInfo={ { ...product, index } }
+              userRole="customer"
+              page="checkout"
+              key={ product.name }
+            />
           ))
         }
       </div>
       <p
-        style={ { fontSize: '20px' } }
+        className="total-price"
         data-testid="customer_checkout__element-order-total-price"
       >
         {
@@ -36,7 +43,12 @@ function CartPage({ history }) {
 }
 
 CartPage.propTypes = {
-  history: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+    }).isRequired,
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default CartPage;

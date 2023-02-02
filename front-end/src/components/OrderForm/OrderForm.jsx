@@ -33,13 +33,13 @@ function OrderForm({ history }) {
   }, [products]);
 
   return (
-    <div>
-      Detalhes e Endereço para Entrega
-      <div>
+    <div className="container-form">
+      <h2>Detalhes e Endereço para Entrega</h2>
+      <div className="container-form-button">
         <form>
           <SelectSeller orderInfo={ { setOrder, order } } />
           <label htmlFor="address-input">
-            Endereço:
+            <span>Endereço:</span>
             <input
               data-testid="customer_checkout__input-address"
               type="text"
@@ -49,7 +49,7 @@ function OrderForm({ history }) {
             />
           </label>
           <label htmlFor="address-input">
-            Número:
+            <span>Número:</span>
             <input
               data-testid="customer_checkout__input-address-number"
               type="text"
@@ -59,20 +59,22 @@ function OrderForm({ history }) {
             />
           </label>
         </form>
+        <button
+          data-testid="customer_checkout__button-submit-order"
+          type="button"
+          onClick={ saveSale }
+        >
+          Finalizar Pedido
+        </button>
       </div>
-      <button
-        data-testid="customer_checkout__button-submit-order"
-        type="button"
-        onClick={ saveSale }
-      >
-        Finalizar Pedido
-      </button>
     </div>
   );
 }
 
 OrderForm.propTypes = {
-  history: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default OrderForm;

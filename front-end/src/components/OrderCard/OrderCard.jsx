@@ -1,59 +1,52 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
-import ShopContext from '../../context/ShopContext';
+import RemoveOrderButton from './RemoveOrderButton';
 
-function OrderCard({ props }) {
-  const { index, name, quantity, price } = props;
-  const { products, setProducts } = useContext(ShopContext);
+function OrderCard({ orderInfo, page, userRole }) {
+  const { price, quantity, index, name, urlImage } = orderInfo;
 
   return (
-    <div style={ { display: 'flex', gap: '16px', padding: '8px', fontSize: '20px' } }>
+    <div className="order-card">
+      <img className="product-img" src={ urlImage } alt="" />
       <p
-        data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
+        data-testid={ `${userRole}_${page}__element-order-table-item-number-${index}` }
       >
         { index + 1 }
       </p>
       <p
-        data-testid={ `customer_checkout__element-order-table-name-${index}` }
+        data-testid={ `${userRole}_${page}__element-order-table-name-${index}` }
       >
         { name }
       </p>
       <p
-        data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+        data-testid={ `${userRole}_${page}__element-order-table-quantity-${index}` }
       >
         { quantity }
       </p>
       <p
-        data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
+        data-testid={ `${userRole}_${page}__element-order-table-unit-price-${index}` }
       >
         { price.toString().replace('.', ',') }
       </p>
       <p
-        data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
+        data-testid={ `${userRole}_${page}__element-order-table-sub-total-${index}` }
       >
         { (price * quantity).toFixed(2).toString().replace('.', ',') }
       </p>
-      <button
-        data-testid={ `customer_checkout__element-order-table-remove-${index}` }
-        type="button"
-        onClick={ () => {
-          const updatedProducts = products
-            .filter((product) => product.name !== name);
-          setProducts(updatedProducts);
-        } }
-      >
-        Remover
-      </button>
+      { page === 'checkout' && <RemoveOrderButton orderInfo={ orderInfo } /> }
     </div>
   );
 }
 
 OrderCard.propTypes = {
-  props: PropTypes.objectOf().isRequired,
-  index: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
+  orderInfo: PropTypes.shape({
+    index: PropTypes.number,
+    name: PropTypes.string,
+    quantity: PropTypes.number,
+    price: PropTypes.string,
+    urlImage: PropTypes.string,
+  }).isRequired,
+  page: PropTypes.string.isRequired,
+  userRole: PropTypes.string.isRequired,
 };
 
 export default OrderCard;

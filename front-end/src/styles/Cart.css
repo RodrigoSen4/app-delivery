@@ -1,0 +1,135 @@
+.container-orders {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.order-card {
+  align-items: center;
+  background-color: rgb(231, 231, 231);
+  border-radius: 10px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.445);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding: 10px 30px;
+  width: 80%;
+}
+
+.product-img {
+  mix-blend-mode: multiply;
+  width: 120px;
+}
+
+.skol {
+  margin-left: 25px;
+  margin-right: 25px;
+  width: 70px;
+}
+
+.order-card p {
+  font-family: Arial , Helvetica , sans-serif;
+  font-size: 25px;
+  width: 10%;
+}
+
+.order-card p:nth-child( 3 ) {
+  width: 40%;
+}
+
+.order-card button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.total-price {
+  font-family: Arial , Helvetica , sans-serif;
+  font-size: 30px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.container-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+
+.container-form h2 {
+  font-family: Jack , Arial , sans-serif;
+  font-size: 40px;
+  font-weight: 100;
+  margin-bottom: 70px;
+}
+
+.container-form-button {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.container-form form {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.container-form form label {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.container-form form label span {
+  font-family: Arial , Helvetica , sans-serif;
+  font-size: 20px;
+}
+
+.container-form form label input {
+  background-color: rgb(231, 231, 231);
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 10px;
+  width: 60%;
+}
+
+.container-form form label input:focus {
+  outline: none;
+}
+
+.container-form form label select {
+  background-color: rgb(231, 231, 231);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.container-form form label select:focus {
+  outline: none;
+}
+
+.container-form-button button {
+  background-color: #ffa652;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-family: Jack , Arial , sans-serif;
+  font-size: 27px;
+  padding: 10px;
+  transition: 200ms;
+}
+
+.container-form-button button:hover {
+  box-shadow: 5px 5px 10px black;
+  transform: scale(1.05);
+}
