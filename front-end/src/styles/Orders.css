@@ -57,6 +57,12 @@
   padding: 10px;
 }
 
+.caminho {
+  background-color: #3bd576;
+  border-radius: 10px;
+  padding: 10px;
+}
+
 .date-price {
   align-items: center;
   display: flex;
@@ -72,4 +78,12 @@
 
 .date-price p:first-child {
   margin-bottom: 10px;
+}
+
+@media screen and ( max-width : 1380px ) {
+
+  .container-orders-items {
+    grid-template-areas: 'div div'
+      'div div';
+  }
 }

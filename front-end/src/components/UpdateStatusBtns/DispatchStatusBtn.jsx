@@ -4,6 +4,7 @@ import { updateSale } from '../../API/requests';
 function DispatchStatusBtn({ id, status, setOrder }) {
   return (
     <button
+      className="button-status"
       disabled={ status !== 'Preparando' }
       type="button"
       data-testid="seller_order_details__button-dispatch-check"

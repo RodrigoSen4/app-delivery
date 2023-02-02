@@ -6,7 +6,11 @@ function OrderCard({ orderInfo, page, userRole }) {
 
   return (
     <div className="order-card">
-      <img className="product-img" src={ urlImage } alt="" />
+      <img
+        className={ `product-img ${name === 'Skol Lata 250ml' && 'skol'}` }
+        src={ urlImage }
+        alt=""
+      />
       <p
         data-testid={ `${userRole}_${page}__element-order-table-item-number-${index}` }
       >
