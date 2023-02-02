@@ -5,12 +5,12 @@ header {
   height: 200px;
   justify-content: space-around;
   margin-bottom: 50px;
-  margin-top: 200px;
+  margin-top: 230px;
 }
 
 header p {
   align-items: center;
-  background-color: rgb(231, 231, 231);
+  background-color: rgb(223, 223, 223);
   border-radius: 10px;
   display: flex;
   font-family: Arial , Helvetica , sans-serif;
@@ -43,26 +43,28 @@ h3 {
   margin-top: 50px;
 }
 
-header button {
+.container-button-status {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 100px;
+  width: 20%;
+}
+
+.button-status {
   background-color: #ffa6527c;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   font-family: Arial , Helvetica , sans-serif;
-  margin-bottom: 150px;
+  font-size: 18px;
+  margin-bottom: 50px;
   margin-top: 30px;
   padding: 10px;
 }
 
-header button:disabled {
-  background-color: rgb(238, 238, 238);
-  border: none;
-  border-radius: 10px;
+.button-status:disabled {
+  background-color: rgb(223, 223, 223);
   cursor: default;
-  font-family: Arial , Helvetica , sans-serif;
-  margin-bottom: 150px;
-  margin-top: 30px;
-  padding: 10px;
 }
 
 .container-details-orders {

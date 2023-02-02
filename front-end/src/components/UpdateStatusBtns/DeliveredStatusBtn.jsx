@@ -4,6 +4,7 @@ import { updateSale } from '../../API/requests';
 function DeliveredStatusBtn({ id, status, setOrder }) {
   return (
     <button
+      className="button-status"
       disabled={ status !== 'Em Trânsito' }
       type="button"
       data-testid="customer_order_details__button-delivery-check"

@@ -15,14 +15,16 @@ function DetailsOrderPage({ match: { params: { id }, path }, userRole: user }) {
 
   const updateBtn = user === 'customer'
     ? (
-      <DeliveredStatusBtn
-        id={ id }
-        status={ order.status || '' }
-        setOrder={ setOrder }
-      />
+      <div className="container-button-status">
+        <DeliveredStatusBtn
+          id={ id }
+          status={ order.status || '' }
+          setOrder={ setOrder }
+        />
+      </div>
     )
     : (
-      <>
+      <div className="container-button-status">
         <PreparingStatusBtn
           id={ id }
           status={ order.status || '' }
@@ -33,7 +35,7 @@ function DetailsOrderPage({ match: { params: { id }, path }, userRole: user }) {
           status={ order.status || '' }
           setOrder={ setOrder }
         />
-      </>
+      </div>
     );
 
   const status = `${user}_order_details__element-order-details-label-delivery-status`;
@@ -45,7 +47,7 @@ function DetailsOrderPage({ match: { params: { id }, path }, userRole: user }) {
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => getOrderFromDB(), []);
+  useEffect(() => getOrderFromDB(), [order]);
 
   return (
     <div>
@@ -54,45 +56,55 @@ function DetailsOrderPage({ match: { params: { id }, path }, userRole: user }) {
         <p
           data-testid={ `${user}_order_details__element-order-details-label-order-id` }
         >
-          {`Pedido: ${order.id}`}
+          <span>Pedido:</span>
+          <hr />
+          <span>{ order.id }</span>
         </p>
         <p
           data-testid={ `${user}_order_details__element-order-details-label-seller-name` }
         >
-          { `Nome do Vendedor: ${order.seller ? order.seller.name : 'Sem nome'}` }
+          <span>Nome do Vendedor:</span>
+          <hr />
+          <span>{ order.seller ? order.seller.name : 'Sem nome' }</span>
         </p>
         <p
           data-testid={ `${user}_order_details__element-order-details-label-order-date` }
         >
-          Data do pedido:
-          {' '}
-          {orderDate && `${orderDate[2]}/${orderDate[1]}/${orderDate[0]}`}
+          <span>Data do pedido:</span>
+          <hr />
+          <span>{ orderDate && `${orderDate[2]}/${orderDate[1]}/${orderDate[0]}` }</span>
         </p>
         <p
           data-testid={ status }
         >
-          { order.status }
+          <span>Status</span>
+          <hr />
+          <span>{ order.status }</span>
         </p>
+        <h3 data-testid={ `${user}_order_details__element-order-total-price` }>
+          { order.totalPrice && order.totalPrice.toString().replace('.', ',')}
+        </h3>
         { updateBtn }
       </header>
-      {
-        order.products && order.products.map(({ name, price, SaleProduct }, index) => (
-          <OrderCard
-            key={ `${SaleProduct.saleId}-${name}` }
-            orderInfo={ {
-              index,
-              name,
-              price,
-              quantity: SaleProduct.quantity,
-            } }
-            userRole={ user }
-            page="order_details"
-          />
-        ))
-      }
-      <h3 data-testid={ `${user}_order_details__element-order-total-price` }>
-        { order.totalPrice && order.totalPrice.toString().replace('.', ',')}
-      </h3>
+      <div className="container-details-orders">
+        {
+          order.products && order.products
+            .map(({ name, price, SaleProduct, urlImage }, index) => (
+              <OrderCard
+                key={ `${SaleProduct.saleId}-${name}` }
+                orderInfo={ {
+                  index,
+                  name,
+                  price,
+                  quantity: SaleProduct.quantity,
+                  urlImage,
+                } }
+                userRole={ user }
+                page="order_details"
+              />
+            ))
+        }
+      </div>
     </div>
   );
 }

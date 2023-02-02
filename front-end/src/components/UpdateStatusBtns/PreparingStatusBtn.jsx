@@ -4,6 +4,7 @@ import { updateSale } from '../../API/requests';
 function PreparingStatusBtn({ id, status, setOrder }) {
   return (
     <button
+      className="button-status"
       disabled={ status !== 'Pendente' }
       type="button"
       data-testid="seller_order_details__button-preparing-check"
@@ -12,7 +13,7 @@ function PreparingStatusBtn({ id, status, setOrder }) {
         setOrder((prev) => ({ ...prev, status: 'Preparando' }));
       } }
     >
-      Em Andamento
+      Preparando
     </button>
   );
 }

@@ -21,7 +21,9 @@ function OrderInfoCard({ orderInfo, history, userRole }) {
           { orderInfo.id }
         </p>
         <p
-          className={ `${orderInfo.status}` }
+          className={
+            `${orderInfo.status === 'Em Trânsito' ? 'caminho' : orderInfo.status}`
+          }
           data-testid={ `${userRole}_orders__element-delivery-status-${orderInfo.id}` }
         >
           { orderInfo.status }
