@@ -45,9 +45,9 @@ h3 {
 
 .container-button-status {
   display: flex;
-  width: 20%;
   justify-content: space-around;
   margin-bottom: 100px;
+  width: 20%;
 }
 
 .button-status {
