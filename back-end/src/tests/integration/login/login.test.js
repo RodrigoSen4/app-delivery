@@ -6,7 +6,7 @@ const chaiHttp = require('chai-http');
 const { User } = require('../../../database/models');
 const app = require('../../../api/app');
 
-const { fakeUserFromDB, fakeUserFromController } = require('./mocks/loginMocks');
+const { fakeUserFromDB, fakeUserFromController } = require('../mocks/loginMocks');
 
 chai.use(chaiHttp);
 
