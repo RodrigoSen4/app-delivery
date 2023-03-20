@@ -1,13 +1,62 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Fast App
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+É um site de delivery completo, através dessa aplicação o usuário como cliente é capaz de:
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+- Fazer login e se cadastrar;
+- Buscar por bebidas;
+- E realizar pedido;
+
+O usuario como vendedor é capaz de:
+
+- Realizar venda;
+- Finalizar pedido;
+- Verificar se o pedido está em andamento ou nao;
+
+O usuario como administrador do sistema:
+
+- Cadastrar novos usuarios;
+- Colocar usuarios como vendedor ou retira-los;
+
+
+<details>
+  <summary><strong>Rodando Localmente</strong></summary><br />
+
+
+   - **Instale as dependencias:** com `npm install` e depois rode o `npm start ou npm run dev` 
+
+  - **:warning: Atenção:**  O procedimento acima deve ser realizado dentro da pasta Back-end e dentro da pasta Front-end, nessa ordem!
+  
+  - **:warning: Atenção:** Não rode o comando npm audit fix!
+
+  - **✨ Dica:** Para rodar o projeto desta forma, obrigatoriamente você deve ter o `node` instalado em seu computador.
+  
+  <br/>
+</details>
+
+# 📄 Sobre
+
+Projeto desenvolvido por _[Rodrigo Sena](https://github.com/RodrigoSen4)_,
+_[Daniel Cavalcanti](https://github.com/DanielCavalcantih)_,
+_[Henos Vinicius](https://github.com/Henos19)_,
+_[Cristiane Dutra](https://www.linkedin.com/in/cristiane-dutra/)_,
+_[Mariana](https://www.linkedin.com/in/mariana-fernanda/)_,
+
+
+  <p align="center">
+    <img src="./demonstracao.gif" alt="git Demonstração"  width="1000"/>
+  </p>
+
+
+# 🛠 Ferramentas & Metodologias Utilizadas
+
+## Aplicação Full Stack
+
+- JavaScript ES6+;
+- React;
+- React Router;
+- ContextAPI;
+- Hooks;
+- Jest e React Testing Library - Testes;
+- Sinon Chai;
+- MySQL;
+- TDD (Test Driven Development) - Desenvolvimento Orientado por Testes.
