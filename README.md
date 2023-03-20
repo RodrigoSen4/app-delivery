@@ -22,7 +22,7 @@ O usuario como administrador do sistema:
   <summary><strong>Rodando Localmente</strong></summary><br />
 
 
-   - **Instale as dependencias:** com `npm install` e depois rode o `npm start ou npm run dev` 
+   - **Instale as dependencias:** com `npm install` e depois rode o `npm start` ou `npm run dev` 
 
   - **:warning: Atenção:**  O procedimento acima deve ser realizado dentro da pasta Back-end e dentro da pasta Front-end, nessa ordem!
   
