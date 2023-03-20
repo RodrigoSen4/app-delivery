@@ -1,4 +1,4 @@
-# Fast App
+# :beer: Fast Drink :motor_scooter:
 
 É um site de delivery completo, através dessa aplicação o usuário como cliente é capaz de:
 
